@@ -1,0 +1,2476 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="BookSwap is a premium local marketplace app that helps students and readers buy and sell used books with ease.">
+  <meta name="keywords" content="BookSwap, used books, local marketplace, student books, buy sell books, mobile app">
+  <meta name="author" content="BookSwap">
+  <meta name="theme-color" content="#07111f">
+  <title>BookSwap | Books Deserve a Second Life</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6efe6;
+      --bg-alt: #efe3d3;
+      --surface: rgba(255, 250, 244, 0.8);
+      --surface-strong: rgba(255, 245, 235, 0.94);
+      --line: rgba(109, 67, 34, 0.12);
+      --line-strong: rgba(109, 67, 34, 0.2);
+      --text: #2e2018;
+      --text-soft: rgba(46, 32, 24, 0.76);
+      --muted: rgba(46, 32, 24, 0.56);
+      --primary: #9f4f20;
+      --primary-strong: #d59524;
+      --accent: #d07a2f;
+      --accent-2: #9c663d;
+      --shadow: 0 24px 70px rgba(80, 47, 24, 0.12);
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
+      --container: min(1180px, calc(100vw - 32px));
+      --nav-height: 84px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(217, 165, 107, 0.24), transparent 26%),
+        radial-gradient(circle at 85% 15%, rgba(156, 102, 61, 0.16), transparent 24%),
+        radial-gradient(circle at center, rgba(255, 255, 255, 0.56), transparent 42%),
+        linear-gradient(180deg, #f8f2ea 0%, #f2e5d8 46%, #ede0d1 100%);
+      color: var(--text);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    p { line-height: 1.75; color: var(--text-soft); }
+
+    .container {
+      width: var(--container);
+      margin: 0 auto;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 9999;
+      padding: 0.85rem 1rem;
+      border-radius: 999px;
+      background: #fff;
+      color: #04101d;
+      transform: translateY(-180%);
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    .ambient-effects,
+    .ambient-effects::before,
+    .ambient-effects::after {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .ambient-effects::before,
+    .ambient-effects::after {
+      content: '';
+      width: 42rem;
+      height: 42rem;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.45;
+      animation: floatBlobs 16s ease-in-out infinite;
+    }
+    .ambient-effects::before {
+      top: -10rem;
+      left: -8rem;
+      background: radial-gradient(circle, rgba(208, 122, 47, 0.24), transparent 66%);
+    }
+    .ambient-effects::after {
+      bottom: -12rem;
+      right: -9rem;
+      background: radial-gradient(circle, rgba(156, 102, 61, 0.2), transparent 66%);
+      animation-delay: -7s;
+    }
+
+    .noise-overlay,
+    .particle-field,
+    .mouse-spotlight,
+    .cursor-glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .noise-overlay {
+      opacity: 0.08;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 24px 24px;
+      mix-blend-mode: soft-light;
+    }
+    .particle-field::before,
+    .particle-field::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(109, 67, 34, 0.9);
+      filter: blur(1px);
+      opacity: 0.08;
+      animation: drift 18s linear infinite;
+    }
+    .particle-field::before {
+      width: 6px;
+      height: 6px;
+      top: 18%;
+      left: 12%;
+      box-shadow:
+        15vw 14vh 0 rgba(255,255,255,0.35),
+        32vw 28vh 0 rgba(208, 122, 47, 0.22),
+        58vw 12vh 0 rgba(156, 102, 61, 0.28),
+        74vw 35vh 0 rgba(109, 67, 34, 0.16),
+        84vw 66vh 0 rgba(208, 122, 47, 0.2),
+        9vw 74vh 0 rgba(109, 67, 34, 0.18);
+    }
+    .particle-field::after {
+      width: 4px;
+      height: 4px;
+      top: 32%;
+      left: 24%;
+      animation-delay: -8s;
+      box-shadow:
+        20vw 42vh 0 rgba(109,67,34,0.18),
+        46vw 58vh 0 rgba(208,122,47,0.24),
+        68vw 17vh 0 rgba(109,67,34,0.14),
+        82vw 44vh 0 rgba(156,102,61,0.18),
+        12vw 52vh 0 rgba(208,122,47,0.16),
+        58vw 76vh 0 rgba(109,67,34,0.14);
+    }
+    .mouse-spotlight {
+      background: radial-gradient(circle 280px at var(--pointer-x, 50vw) var(--pointer-y, 30vh), rgba(208, 122, 47, 0.12), rgba(208, 122, 47, 0.04) 28%, transparent 60%);
+      mix-blend-mode: screen;
+      opacity: 0.95;
+      transition: background 180ms linear;
+    }
+    .cursor-glow {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      transform: translate3d(var(--cursor-x, 0), var(--cursor-y, 0), 0) translate(-50%, -50%) scale(var(--cursor-scale, 1));
+      background: radial-gradient(circle, rgba(208,122,47,0.32), rgba(208,122,47,0.14) 45%, transparent 72%);
+      box-shadow: 0 0 40px rgba(208,122,47,0.2), 0 0 90px rgba(156,102,61,0.12);
+      mix-blend-mode: screen;
+      opacity: 0.92;
+      transition: opacity 220ms ease;
+    }
+
+    .loading-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at center, rgba(208,122,47,0.12), transparent 32%),
+        linear-gradient(180deg, rgba(248,241,232,0.98), rgba(242,228,216,0.96));
+      transition: opacity 900ms ease, visibility 900ms ease, transform 900ms ease;
+    }
+    body.is-ready .loading-screen {
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(1.02);
+    }
+    .loading-screen__inner {
+      width: min(560px, calc(100vw - 40px));
+      text-align: center;
+      display: grid;
+      gap: 1.25rem;
+      position: relative;
+    }
+    .loading-screen__brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .loading-screen__logo-mark,
+    .navbar__brand-mark {
+      width: 64px;
+      height: 64px;
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, rgba(208,122,47,0.08), rgba(156,102,61,0.06));
+      border: 1px solid rgba(109,67,34,0.12);
+      box-shadow: 0 12px 40px rgba(80,47,24,0.12);
+      animation: glowPulse 1.8s ease-in-out infinite;
+      overflow: hidden;
+    }
+    .navbar__brand-mark {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+    }
+    .loading-screen__logo-mark img,
+    .navbar__brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .loading-screen__logo-text,
+    .navbar__brand strong,
+    .section-header__title,
+    .hero__title,
+    .call-to-action__title,
+    .site-footer__title {
+      font-family: 'Manrope', sans-serif;
+    }
+    .loading-screen__message {
+      margin: 0;
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: var(--text);
+    }
+    .loading-screen__progress {
+      width: min(360px, 100%);
+      height: 5px;
+      margin: 0 auto;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .loading-screen__progress-bar {
+      display: block;
+      height: 100%;
+      width: 100%;
+      transform-origin: left;
+      background: linear-gradient(90deg, var(--accent), var(--primary-strong));
+      animation: loadBar 1.4s ease-in-out infinite;
+    }
+    .loading-screen__book {
+      width: 150px;
+      height: 96px;
+      margin: 0 auto;
+      position: relative;
+      perspective: 1000px;
+    }
+    .loading-screen__book::before,
+    .loading-screen__book::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: linear-gradient(140deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+      transform-origin: left center;
+      animation: pageOpen 1.8s ease-in-out infinite;
+    }
+    .loading-screen__book::after {
+      background: linear-gradient(140deg, rgba(98,215,255,0.16), rgba(168,140,255,0.18));
+      transform-origin: right center;
+      animation-delay: -0.9s;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+    .navbar {
+      position: relative;
+      padding: 1rem 0;
+      backdrop-filter: blur(0px);
+      transition: padding 300ms ease, background 300ms ease, backdrop-filter 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
+    }
+    .navbar::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(248,242,234,0.8), rgba(248,242,234,0.18));
+      opacity: 0;
+      transition: opacity 300ms ease;
+      border-bottom: 1px solid transparent;
+    }
+    body.scrolled .navbar {
+      padding: 0.6rem 0;
+      backdrop-filter: blur(18px);
+    }
+    body.scrolled .navbar::before {
+      opacity: 1;
+      border-bottom-color: rgba(255,255,255,0.08);
+    }
+    .navbar__inner {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      justify-content: space-between;
+      min-height: 68px;
+      z-index: 1;
+    }
+    .navbar__brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.9rem;
+      min-width: 0;
+    }
+    .navbar__brand-mark {
+      display: grid;
+      place-items: center;
+    }
+    .navbar__brand-text {
+      display: grid;
+      gap: 0.12rem;
+      min-width: 0;
+    }
+    .navbar__brand-text strong,
+    .site-footer__title {
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+    }
+    .navbar__brand-text span {
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+    .navbar__links {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative;
+      padding: 0.35rem;
+      border-radius: 999px;
+      background: rgba(255,250,244,0.82);
+      border: 1px solid rgba(109,67,34,0.08);
+      box-shadow: 0 0 32px rgba(80,47,24,0.06);
+      transition: transform 300ms ease, opacity 300ms ease;
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .navbar__indicator {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(208,122,47,0.14), rgba(156,102,61,0.16));
+      box-shadow: 0 0 32px rgba(208,122,47,0.12);
+      transition: transform 300ms ease, width 300ms ease, opacity 300ms ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .navbar__links a {
+      position: relative;
+      z-index: 1;
+      padding: 0.7rem 0.95rem;
+      border-radius: 999px;
+      color: var(--text-soft);
+      font-size: 0.92rem;
+      transition: color 220ms ease, background 220ms ease, transform 220ms ease;
+    }
+    .navbar__links a:hover,
+    .navbar__links a.is-active {
+      color: var(--text);
+      background: rgba(208,122,47,0.08);
+      transform: translateY(-1px);
+    }
+    .navbar__actions {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .button,
+    .store-button {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      min-height: 48px;
+      padding: 0.92rem 1.3rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease, background 220ms ease, color 220ms ease, opacity 220ms ease;
+      will-change: transform;
+    }
+    .button::after,
+    .store-button::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background: linear-gradient(120deg, rgba(255,255,255,0.2), transparent 40%, rgba(255,255,255,0.12));
+      opacity: 0;
+      transition: opacity 220ms ease;
+    }
+    .button:hover::after,
+    .store-button:hover::after { opacity: 1; }
+    .button--primary,
+    .store-button {
+      background: linear-gradient(135deg, rgba(159,79,32,0.96), rgba(208,122,47,0.94));
+      color: #fff9f2;
+      box-shadow: 0 14px 34px rgba(159,79,32,0.16);
+    }
+    .button--secondary,
+    .button--ghost {
+      border-color: rgba(109,67,34,0.12);
+      background: rgba(255,250,244,0.62);
+      color: var(--text);
+    }
+    .button:hover,
+    .store-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 42px rgba(159,79,32,0.14);
+    }
+    .button--primary:hover,
+    .store-button:hover {
+      box-shadow: 0 20px 46px rgba(159,79,32,0.18), 0 0 0 1px rgba(255,255,255,0.06) inset;
+    }
+
+    main { position: relative; z-index: 2; }
+    section {
+      position: relative;
+      padding: 6.4rem 0;
+      scroll-margin-top: calc(var(--nav-height) + 24px);
+      overflow: clip;
+    }
+    section::before {
+      content: '';
+      position: absolute;
+      inset: auto 0 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+      opacity: 0.7;
+    }
+    .section-header {
+      display: grid;
+      gap: 0.8rem;
+      max-width: 760px;
+      margin-bottom: 2rem;
+    }
+    .section-header__eyebrow,
+    .hero__eyebrow,
+    .call-to-action__eyebrow,
+    .loading-screen__status {
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      font-size: 0.75rem;
+      color: rgba(130,168,255,0.92);
+    }
+    .section-header__title,
+    .hero__title,
+    .call-to-action__title {
+      margin: 0;
+      line-height: 1.03;
+      font-size: clamp(2.15rem, 4.2vw, 4.95rem);
+      letter-spacing: -0.04em;
+      color: var(--text);
+    }
+    .section-intro {
+      max-width: 64ch;
+      margin: 0;
+      font-size: 1.04rem;
+      color: var(--text-soft);
+    }
+
+    .hero {
+      padding-top: 2.8rem;
+      padding-bottom: 5.5rem;
+    }
+    .hero__inner {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 2.4rem;
+      align-items: center;
+    }
+    .hero__content {
+      display: grid;
+      gap: 1.3rem;
+      max-width: 44rem;
+    }
+    .hero__description {
+      margin: 0;
+      font-size: 1.08rem;
+      max-width: 60ch;
+    }
+    .hero__actions,
+    .call-to-action__actions,
+    .hero__download-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      align-items: center;
+    }
+    .hero__downloads {
+      display: grid;
+      gap: 0.7rem;
+      padding-top: 0.2rem;
+    }
+    .hero__downloads-label {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .hero__stats-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin: 0;
+      padding: 0;
+    }
+    .hero__stat {
+      border-radius: var(--radius-md);
+      padding: 1rem 1rem 1.05rem;
+      background: rgba(255,250,244,0.72);
+      border: 1px solid rgba(109,67,34,0.08);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+    .hero__stat dt {
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+    .hero__stat dd {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.55;
+    }
+    .hero__visual { perspective: 1400px; }
+    .hero__mockup {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      transform-style: preserve-3d;
+      position: relative;
+    }
+    .hero__mockup::before,
+    .hero__mockup::after {
+      content: '';
+      position: absolute;
+      border-radius: 999px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero__mockup::before {
+      width: 140px;
+      height: 140px;
+      left: -20px;
+      top: 30px;
+      background: radial-gradient(circle, rgba(208,122,47,0.16), transparent 68%);
+      filter: blur(6px);
+      animation: haloPulse 5s ease-in-out infinite;
+    }
+    .hero__mockup::after {
+      width: 180px;
+      height: 180px;
+      right: -28px;
+      bottom: 54px;
+      background: radial-gradient(circle, rgba(156,102,61,0.14), transparent 70%);
+      filter: blur(10px);
+      animation: haloPulse 6.5s ease-in-out infinite reverse;
+    }
+    .hero__phone {
+      width: min(100%, 390px);
+      min-height: 660px;
+      border-radius: 42px;
+      padding: 14px;
+      background: linear-gradient(180deg, rgba(255,250,244,0.96), rgba(248,236,223,0.92));
+      border: 1px solid rgba(109,67,34,0.12);
+      box-shadow: 0 34px 90px rgba(80,47,24,0.12);
+      transform-style: preserve-3d;
+      will-change: transform;
+      position: relative;
+      isolation: isolate;
+      animation: floatPhone 7.5s ease-in-out infinite;
+    }
+    .hero__phone::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at 50% 10%, rgba(208,122,47,0.1), transparent 34%),
+        linear-gradient(180deg, rgba(255,250,244,0.98), rgba(245,233,221,0.96));
+      border: 1px solid rgba(109,67,34,0.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.42);
+      z-index: -1;
+    }
+    .hero__phone::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 10px;
+      transform: translateX(-50%);
+      width: 38%;
+      height: 22px;
+      border-radius: 0 0 18px 18px;
+      background: linear-gradient(180deg, rgba(80,47,24,0.12), rgba(80,47,24,0.04));
+      opacity: 0.4;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .hero__phone-glow {
+      position: absolute;
+      inset: -18px;
+      border-radius: 44px;
+      background: radial-gradient(circle at 50% 36%, rgba(208,122,47,0.16), transparent 42%);
+      filter: blur(18px);
+      opacity: 0.8;
+      transition: opacity 220ms ease;
+      z-index: -2;
+    }
+    .hero__phone-frame {
+      position: relative;
+      z-index: 1;
+      border-radius: 30px;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid rgba(109,67,34,0.08);
+      box-shadow: 0 20px 48px rgba(80,47,24,0.1);
+    }
+    .hero__phone-frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
+    }
+    .hero__phone-status {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.55rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(255,250,244,0.92);
+      border: 1px solid rgba(109,67,34,0.1);
+      color: var(--text);
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      box-shadow: 0 12px 28px rgba(80,47,24,0.08);
+      z-index: 3;
+      backdrop-filter: blur(10px);
+    }
+    .hero__phone-status i { color: rgba(159,79,32,0.92); }
+    .hero__phone-caption {
+      position: absolute;
+      left: 1rem;
+      right: 1rem;
+      bottom: 1rem;
+      padding: 0.8rem 0.95rem;
+      border-radius: 18px;
+      background: rgba(255,250,244,0.88);
+      border: 1px solid rgba(109,67,34,0.08);
+      color: var(--text);
+      font-size: 0.92rem;
+      box-shadow: 0 14px 30px rgba(80,47,24,0.08);
+      backdrop-filter: blur(10px);
+    }
+    .hero__phone-mini-stats {
+      position: absolute;
+      right: -1rem;
+      top: 5.25rem;
+      display: grid;
+      gap: 0.55rem;
+      z-index: 4;
+    }
+    .hero__phone-mini-stats span {
+      padding: 0.65rem 0.75rem;
+      border-radius: 16px;
+      background: rgba(255,250,244,0.9);
+      border: 1px solid rgba(109,67,34,0.1);
+      box-shadow: 0 14px 26px rgba(80,47,24,0.08);
+      backdrop-filter: blur(10px);
+      color: var(--text);
+      font-size: 0.78rem;
+      line-height: 1.2;
+      max-width: 120px;
+    }
+    .hero__phone-mini-stats strong {
+      display: block;
+      margin-bottom: 0.16rem;
+      color: rgba(159,79,32,0.96);
+      font-size: 0.94rem;
+    }
+
+    .trust-strip__list,
+    .steps__journey,
+    .feature-grid,
+    .benefit-grid,
+    .stats-grid,
+    .market-grid,
+    .testimonial-grid,
+    .faq-list,
+    .comparison-grid,
+    .sustainability-grid,
+    .why-grid,
+    .highlights-grid {
+      display: grid;
+      gap: 1rem;
+    }
+    .trust-strip__list {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .pill-card,
+    .info-card,
+    .metric-card,
+    .feature-card,
+    .benefit-card,
+    .market-card,
+    .testimonial-card,
+    .faq-item,
+    .comparison-card,
+    .sustainability-card,
+    .why-card,
+    .step-card,
+    .demo-frame,
+    .contact-panel {
+      position: relative;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      overflow: hidden;
+    }
+    .pill-card {
+      padding: 1rem 1.1rem;
+      text-align: left;
+      min-height: 132px;
+    }
+    .pill-card__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: rgba(159,79,32,0.92);
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .pill-card__title,
+    .info-card h3,
+    .feature-card h3,
+    .benefit-card h3,
+    .market-card h3,
+    .comparison-card h3,
+    .sustainability-card h3,
+    .why-card h3,
+    .step-card h3,
+    .testimonial-card cite,
+    .faq-item summary {
+      margin: 0;
+      color: var(--text);
+      font-weight: 700;
+      line-height: 1.15;
+    }
+    .pill-card__copy,
+    .info-card p,
+    .feature-card p,
+    .benefit-card p,
+    .market-card p,
+    .comparison-card p,
+    .sustainability-card p,
+    .why-card p,
+    .step-card p,
+    .testimonial-card p,
+    .faq-item p {
+      margin: 0;
+      color: var(--text-soft);
+      line-height: 1.7;
+    }
+
+    .trusted-by { padding-top: 2rem; }
+    .problem__content,
+    .solution__layout,
+    .why-grid,
+    .market-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .info-card,
+    .feature-card,
+    .benefit-card,
+    .market-card,
+    .comparison-card,
+    .sustainability-card,
+    .why-card,
+    .step-card,
+    .testimonial-card,
+    .faq-item,
+    .stat-card,
+    .pill-card {
+      padding: 1.35rem;
+    }
+    .comparison-card { min-height: 100%; }
+    .comparison-card--accent {
+      background: linear-gradient(180deg, rgba(98,215,255,0.09), rgba(168,140,255,0.06)), var(--surface);
+      border-color: rgba(130,168,255,0.2);
+    }
+    .comparison-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0;
+      display: grid;
+      gap: 0.7rem;
+    }
+    .comparison-list li {
+      display: flex;
+      gap: 0.65rem;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+    .comparison-list li::before {
+      content: '•';
+      color: rgba(98,215,255,0.94);
+      font-size: 1.1rem;
+      line-height: 1;
+      margin-top: 0.1rem;
+    }
+
+    .steps__journey {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .step-card {
+      min-height: 210px;
+      display: grid;
+      gap: 1rem;
+      align-content: start;
+      transform-style: preserve-3d;
+    }
+    .step-card__index {
+      width: fit-content;
+      min-width: 42px;
+      height: 42px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(145deg, rgba(98,215,255,0.2), rgba(168,140,255,0.18));
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    .showcase { padding-top: 5.5rem; }
+    .showcase__layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 1.25rem;
+      align-items: center;
+    }
+    .showcase__copy {
+      display: grid;
+      gap: 1rem;
+      max-width: 46rem;
+    }
+    .showcase__lead {
+      margin: 0;
+      font-size: 1.04rem;
+      color: var(--text-soft);
+    }
+    .showcase__panel {
+      padding: 0;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      display: flex;
+      justify-content: center;
+    }
+    .showcase__swiper {
+      width: min(100%, 380px);
+      padding: 1rem 1rem 1.25rem;
+    }
+    .swiper-slide {
+      height: auto;
+      display: flex;
+      justify-content: center;
+    }
+    .screenshot-frame {
+      position: relative;
+      width: min(100%, 340px);
+      aspect-ratio: 9 / 16;
+      border-radius: 34px;
+      padding: 0.85rem;
+      background: linear-gradient(180deg, rgba(255,250,244,0.96), rgba(247,236,224,0.92));
+      border: 1px solid rgba(109,67,34,0.12);
+      box-shadow: 0 24px 60px rgba(80,47,24,0.12);
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      gap: 0.7rem;
+      margin: 0 auto;
+    }
+    .screenshot-frame > * {
+      position: relative;
+      z-index: 1;
+    }
+    .screenshot-frame img {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      flex: 1;
+      border-radius: 24px;
+      object-fit: cover;
+      display: block;
+      background: #fff7ef;
+    }
+    .screenshot-frame figcaption {
+      margin: 0;
+      text-align: center;
+      font-size: 0.84rem;
+      color: var(--text-soft);
+      letter-spacing: 0.02em;
+    }
+    .screenshot-frame::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(255,250,244,0.86), rgba(247,236,224,0.84));
+      border: 1px solid rgba(109,67,34,0.08);
+      z-index: 0;
+    }
+
+    .feature-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .feature-card {
+      min-height: 200px;
+      display: grid;
+      gap: 0.85rem;
+    }
+    .feature-card__badge {
+      width: fit-content;
+      padding: 0.42rem 0.72rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      color: rgba(130,168,255,0.94);
+      font-size: 0.76rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .feature-card__meta {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .why-grid { grid-template-columns: 0.95fr 1.05fr 1fr; }
+    .why-card {
+      display: grid;
+      gap: 0.85rem;
+      min-height: 220px;
+    }
+    .why-card--hero {
+      background: linear-gradient(180deg, rgba(98,215,255,0.08), rgba(168,140,255,0.05)), var(--surface);
+    }
+    .why-card__visual {
+      border-radius: 22px;
+      min-height: 130px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        radial-gradient(circle at 35% 30%, rgba(98,215,255,0.24), transparent 32%),
+        radial-gradient(circle at 72% 60%, rgba(168,140,255,0.28), transparent 28%),
+        rgba(255,255,255,0.04);
+    }
+    .why-card__points {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.65rem;
+    }
+    .why-card__points li {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--text-soft);
+    }
+    .why-card__points li::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--primary-strong));
+      box-shadow: 0 0 0 4px rgba(98,215,255,0.12);
+    }
+
+    .comparison-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .comparison-card__tag,
+    .market-card__tag,
+    .sustainability-card__tag,
+    .metric-card__tag {
+      width: fit-content;
+      margin-bottom: 0.85rem;
+      padding: 0.38rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      color: rgba(130,168,255,0.92);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.74rem;
+    }
+
+    .benefit-grid,
+    .sustainability-grid,
+    .stats-grid,
+    .market-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .benefit-card,
+    .sustainability-card,
+    .metric-card,
+    .market-card {
+      min-height: 180px;
+      display: grid;
+      gap: 0.8rem;
+    }
+    .metric-card__value {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1;
+      color: var(--text);
+      font-family: 'Manrope', sans-serif;
+    }
+    .metric-card__label {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .demo-frame {
+      padding: 0;
+      background: radial-gradient(circle at 50% 36%, rgba(208,122,47,0.14), transparent 30%), var(--surface-strong);
+      border-color: rgba(159,79,32,0.14);
+      box-shadow: 0 28px 100px rgba(80,47,24,0.12), 0 0 0 1px rgba(255,255,255,0.18) inset;
+      display: flex;
+      justify-content: center;
+    }
+    .demo-frame__stage {
+      width: min(100%, 360px);
+      aspect-ratio: 9 / 16;
+      min-height: 0;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      border-radius: inherit;
+      padding: 0.85rem;
+      margin: 0 auto;
+    }
+    .demo-frame__fullscreen {
+      position: absolute;
+      top: 0.9rem;
+      right: 0.9rem;
+      z-index: 3;
+      min-height: 38px;
+      padding: 0.6rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(109,67,34,0.14);
+      background: rgba(255,250,244,0.92);
+      color: var(--text);
+      box-shadow: 0 12px 24px rgba(80,47,24,0.08);
+      backdrop-filter: blur(10px);
+      font-size: 0.82rem;
+    }
+    .demo-frame__fullscreen i {
+      color: rgba(159,79,32,0.95);
+    }
+    .demo-frame__stage::before,
+    .demo-frame__stage::after {
+      content: '';
+      position: absolute;
+      inset: auto;
+      width: 20rem;
+      height: 20rem;
+      border-radius: 50%;
+      filter: blur(24px);
+      background: radial-gradient(circle, rgba(208,122,47,0.18), transparent 64%);
+      animation: floatBlobs 13s ease-in-out infinite;
+    }
+    .demo-frame__stage::before {
+      left: -3rem;
+      top: 2rem;
+    }
+    .demo-frame__stage::after {
+      right: -4rem;
+      bottom: -2rem;
+      background: radial-gradient(circle, rgba(156,102,61,0.16), transparent 64%);
+      animation-delay: -5s;
+    }
+    .demo-frame__play {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(159,79,32,0.96), rgba(208,122,47,0.94));
+      color: #fff9f2;
+      font-size: 1.7rem;
+      box-shadow: 0 20px 40px rgba(159,79,32,0.18), 0 0 0 14px rgba(159,79,32,0.08), 0 0 0 28px rgba(208,122,47,0.05);
+      position: relative;
+      animation: playPulse 2.8s ease-in-out infinite;
+    }
+    .demo-frame__play::before,
+    .demo-frame__play::after {
+      content: '';
+      position: absolute;
+      inset: -14px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.14);
+      opacity: 0.75;
+    }
+    .demo-frame__play::after {
+      inset: -28px;
+      opacity: 0.35;
+    }
+    .demo-frame__video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      object-fit: cover;
+      border-radius: inherit;
+      background: #fff7ef;
+    }
+
+    .testimonial-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .testimonial-card blockquote { margin: 0; }
+    .testimonial-card footer {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .faq-list {
+      gap: 0.9rem;
+      max-width: 860px;
+    }
+    .faq-item summary {
+      cursor: pointer;
+      list-style: none;
+      padding-right: 1rem;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '+';
+      float: right;
+      color: rgba(130,168,255,0.96);
+      font-size: 1.15rem;
+      transition: transform 240ms ease;
+    }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item p { padding-top: 1rem; }
+
+    .call-to-action { padding-bottom: 5rem; }
+    .call-to-action__inner {
+      border-radius: calc(var(--radius-xl) + 8px);
+      background:
+        radial-gradient(circle at 18% 20%, rgba(98,215,255,0.2), transparent 24%),
+        radial-gradient(circle at 80% 10%, rgba(168,140,255,0.16), transparent 28%),
+        linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 2.2rem;
+      box-shadow: var(--shadow);
+    }
+    .call-to-action__content {
+      max-width: 62rem;
+      display: grid;
+      gap: 1rem;
+    }
+    .call-to-action__text {
+      margin: 0;
+      max-width: 58ch;
+      font-size: 1.04rem;
+    }
+
+    .contact__layout {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 1rem;
+    }
+    .contact__form,
+    .contact-panel { padding: 1.35rem; }
+    .contact__form {
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 1rem;
+    }
+    .form-row {
+      display: grid;
+      gap: 0.55rem;
+    }
+    .form-row label {
+      font-size: 0.88rem;
+      color: var(--text);
+      font-weight: 600;
+    }
+    .form-row input,
+    .form-row textarea {
+      width: 100%;
+      padding: 1rem 1.05rem;
+      border-radius: 16px;
+      background: rgba(255,250,244,0.92);
+      border: 1px solid rgba(109,67,34,0.16);
+      color: var(--text);
+      outline: none;
+      resize: vertical;
+      transition: border-color 220ms ease, box-shadow 220ms ease, background 220ms ease, transform 220ms ease;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+    }
+    .form-row input::placeholder,
+    .form-row textarea::placeholder { color: rgba(109,67,34,0.42); }
+    .form-row input:focus,
+    .form-row textarea:focus {
+      border-color: rgba(208,122,47,0.48);
+      background: rgba(255,250,244,0.98);
+      box-shadow: 0 0 0 4px rgba(208,122,47,0.1);
+      transform: translateY(-1px);
+    }
+    .contact-panel {
+      display: grid;
+      gap: 1rem;
+    }
+    .contact-panel__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.75rem;
+    }
+    .contact-panel__socials {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .contact-panel__socials a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.92rem 0.95rem;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text-soft);
+      min-height: 52px;
+    }
+
+    .site-footer {
+      padding: 3rem 0 2.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+      z-index: 2;
+    }
+    .site-footer__inner {
+      display: grid;
+      gap: 1.5rem;
+    }
+    .site-footer__columns {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .site-footer__nav {
+      display: grid;
+      gap: 0.7rem;
+      align-content: start;
+    }
+    .site-footer__nav h3 {
+      margin: 0 0 0.15rem;
+      color: var(--text);
+      font-size: 1rem;
+    }
+    .site-footer__nav a { width: fit-content; color: var(--text-soft); }
+    .site-footer__meta p { margin: 0; }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(26px);
+      filter: blur(8px);
+      transition: opacity 900ms ease, transform 900ms ease, filter 900ms ease;
+    }
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+    [data-reveal="slide"] { transform: translateX(-28px); }
+    [data-reveal="slide-right"] { transform: translateX(28px); }
+    [data-reveal="scale"] { transform: scale(0.94); }
+    [data-reveal="rotate"] { transform: translateY(16px) rotate(-2deg); }
+    [data-reveal="mask"] {
+      clip-path: inset(0 0 24% 0 round 24px);
+      opacity: 0;
+    }
+    [data-reveal="mask"].is-visible {
+      clip-path: inset(0 0 0 0 round 24px);
+      opacity: 1;
+    }
+
+    .word-reveal {
+      display: inline-block;
+      overflow: hidden;
+    }
+    .word-reveal__word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(0.55em);
+      animation: wordRise 0.8s cubic-bezier(.2,.8,.2,1) forwards;
+      animation-delay: var(--delay, 0ms);
+    }
+
+    .tilt-card,
+    .interactive-card {
+      transform-style: preserve-3d;
+      transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+      will-change: transform;
+    }
+
+    @keyframes floatBlobs {
+      0%, 100% { transform: translate3d(0,0,0) scale(1); }
+      50% { transform: translate3d(0, 16px, 0) scale(1.08); }
+    }
+    @keyframes floatPhone {
+      0%, 100% { transform: translate3d(0, 0, 0) rotate(-0.8deg); }
+      50% { transform: translate3d(0, -10px, 0) rotate(1deg); }
+    }
+    @keyframes haloPulse {
+      0%, 100% { opacity: 0.55; transform: scale(1); }
+      50% { opacity: 0.92; transform: scale(1.08); }
+    }
+    @keyframes drift {
+      0% { transform: translate3d(0,0,0); }
+      100% { transform: translate3d(36px, -24px, 0); }
+    }
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 0 0 rgba(130,168,255,0.18), 0 0 0 rgba(168,140,255,0.12); }
+      50% { box-shadow: 0 0 28px rgba(130,168,255,0.18), 0 0 48px rgba(168,140,255,0.12); }
+    }
+    @keyframes loadBar {
+      0% { transform: scaleX(0.08); opacity: 0.65; }
+      45% { transform: scaleX(0.74); opacity: 1; }
+      100% { transform: scaleX(1); opacity: 0.78; }
+    }
+    @keyframes pageOpen {
+      0%, 100% { transform: rotateY(0deg) translateZ(0); }
+      50% { transform: rotateY(-28deg) translateZ(8px); }
+    }
+    @keyframes playPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+    @keyframes wordRise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 1120px) {
+      .hero__inner,
+      .showcase__layout,
+      .solution__layout,
+      .contact__layout,
+      .site-footer__columns,
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+      .navbar__inner { display: grid; }
+      .navbar__links { justify-self: start; flex-wrap: wrap; }
+      .navbar__actions { justify-self: start; }
+      .hero__stats-list,
+      .trust-strip__list,
+      .steps__journey,
+      .feature-grid,
+      .benefit-grid,
+      .sustainability-grid,
+      .stats-grid,
+      .market-grid,
+      .testimonial-grid,
+      .comparison-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .problem__content { grid-template-columns: 1fr; }
+      .showcase__copy { max-width: none; }
+      .hero__phone { margin: 0 auto; }
+    }
+
+    @media (max-width: 760px) {
+      :root { --container: min(100vw - 24px, 1180px); }
+      section { padding: 5rem 0; }
+      .hero { padding-top: 2rem; }
+      .hero__title,
+      .section-header__title,
+      .call-to-action__title { font-size: clamp(2rem, 10vw, 3.25rem); }
+      .hero__stats-list,
+      .trust-strip__list,
+      .steps__journey,
+      .feature-grid,
+      .benefit-grid,
+      .sustainability-grid,
+      .stats-grid,
+      .market-grid,
+      .testimonial-grid,
+      .comparison-grid,
+      .contact-panel__socials,
+      .site-footer__columns {
+        grid-template-columns: 1fr;
+      }
+      .hero__actions,
+      .call-to-action__actions,
+      .hero__download-buttons,
+      .navbar__actions,
+      .navbar__links {
+        width: 100%;
+      }
+      .navbar__links {
+        justify-content: flex-start;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+      .navbar__links::-webkit-scrollbar { display: none; }
+      .hero__phone {
+        width: 100%;
+        min-height: 560px;
+      }
+      .screenshot-phone { min-height: 460px; }
+      .screenshot-phone__screen { min-height: 440px; }
+      .call-to-action__inner { padding: 1.5rem; }
+      .contact-panel__socials a { justify-content: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+      .mouse-spotlight,
+      .cursor-glow,
+      .ambient-effects,
+      .noise-overlay,
+      .particle-field { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#hero">Skip to main content</a>
+  <div class="ambient-effects" aria-hidden="true"></div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div class="particle-field" aria-hidden="true"></div>
+  <div class="mouse-spotlight" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <section id="loading-screen" class="loading-screen" aria-label="Loading BookSwap experience" role="status">
+    <div class="loading-screen__inner container">
+      <div class="loading-screen__brand" aria-label="BookSwap logo">
+        <span class="loading-screen__logo-mark" aria-hidden="true">
+          <img src="assets/logo/ChatGPT Image Jun 30, 2026, 11_37_59 PM.png" alt="" aria-hidden="true">
+        </span>
+        <span class="loading-screen__logo-text">BookSwap</span>
+      </div>
+      <div class="loading-screen__book" aria-hidden="true"></div>
+      <p class="loading-screen__message">Books deserve a second life.</p>
+      <div class="loading-screen__progress" aria-hidden="true">
+        <span class="loading-screen__progress-bar"></span>
+      </div>
+      <p class="loading-screen__status">Opening the story of local book exchange</p>
+    </div>
+  </section>
+
+  <header id="site-header" class="site-header" role="banner">
+    <nav id="primary-navigation" class="navbar navbar--landing" aria-label="Primary navigation">
+      <div class="navbar__inner container">
+        <a class="navbar__brand" href="#hero" aria-label="BookSwap home">
+          <span class="navbar__brand-mark" aria-hidden="true">
+            <img src="assets/logo/ChatGPT Image Jun 30, 2026, 11_37_59 PM.png" alt="" aria-hidden="true">
+          </span>
+          <span class="navbar__brand-text">
+            <strong>BookSwap</strong>
+            <!-- <span>Local book exchange for students and readers</span> -->
+          </span>
+        </a>
+
+        <div class="navbar__links" aria-label="Section links">
+          <span class="navbar__indicator" aria-hidden="true"></span>
+          <a href="#problem">Problem</a>
+          <a href="#solution">Solution</a>
+          <a href="#app-screenshots">Showcase</a>
+          <a href="#comparison">Comparison</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+        <div class="navbar__actions">
+          <a class="button button--ghost" href="#demo-video">Watch Demo</a>
+          <a class="button button--primary" href="#call-to-action">Get Early Access</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section id="hero" class="hero hero--startup" aria-labelledby="hero-title" data-reveal="mask">
+      <div class="hero__inner container">
+        <div class="hero__content" data-aos="fade-up">
+          <p class="hero__eyebrow">Books deserve a second life.</p>
+          <h1 id="hero-title" class="hero__title" data-word-reveal>Buy and sell used books locally with a premium mobile experience.</h1>
+          <p class="hero__description" data-reveal="slide">BookSwap helps students, readers, mentors, investors, and judges understand a product that is practical, emotionally resonant, and built around local exchange.</p>
+
+          <div class="hero__actions" aria-label="Primary calls to action" data-reveal="slide-right">
+            <a class="button button--primary" href="#call-to-action">Request a Demo</a>
+            <a class="button button--secondary" href="#app-screenshots">View Screens</a>
+          </div>
+
+          <div class="hero__downloads" aria-label="Download buttons" data-reveal="fade">
+            <p class="hero__downloads-label">Launch readiness</p>
+            <div class="hero__download-buttons">
+              <a class="store-button" href="#contact" aria-label="App Store coming soon">App Store Coming Soon</a>
+              <a class="store-button" href="#contact" aria-label="Google Play coming soon">Google Play Coming Soon</a>
+            </div>
+          </div>
+
+          <dl class="hero__stats-list" aria-label="Key product highlights" data-reveal="scale">
+            <div class="hero__stat tilt-card">
+              <dt>Local-first</dt>
+              <dd>Built for nearby exchanges that feel safe, practical, and convenient.</dd>
+            </div>
+            <div class="hero__stat tilt-card">
+              <dt>Student-led</dt>
+              <dd>Designed around the real behavior of campus communities.</dd>
+            </div>
+            <div class="hero__stat tilt-card">
+              <dt>Investor-ready</dt>
+              <dd>Clear value proposition, repeat usage, and strong product clarity.</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="hero__visual" data-aos="fade-left" aria-label="BookSwap app preview" data-reveal="rotate">
+          <figure class="hero__mockup hero__phone-media">
+            <div class="hero__phone interactive-card" data-phone>
+              <div class="hero__phone-glow" aria-hidden="true"></div>
+              <div class="hero__phone-status"><i class="fa-solid fa-signal" aria-hidden="true"></i> Live marketplace</div>
+              <div class="hero__phone-mini-stats" aria-hidden="true">
+                <span><strong>Save more</strong>Used books at lower cost</span>
+                <span><strong>Swap local</strong>Nearby exchange focus</span>
+              </div>
+              <div class="hero__phone-frame">
+                <img src="assets/screenshots/1782844112391.jpg" alt="BookSwap marketplace screenshot showing live listings and pricing">
+              </div>
+              <figcaption class="hero__phone-caption">Browse live listings, compare prices, and start a local exchange in seconds.</figcaption>
+            </div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="trusted-by" class="trusted-by" aria-labelledby="trusted-by-title" data-reveal="fade">
+      <div class="trusted-by__inner container">
+        <header class="section-header">
+          <p class="section-header__eyebrow">Three Pillars</p>
+          <h2 id="trusted-by-title" class="section-header__title" data-word-reveal>Affordability, sustainability, and community shape the product story.</h2>
+        </header>
+
+        <div class="highlights-grid trust-strip__list" role="list" aria-label="Highlight cards">
+          <article class="pill-card tilt-card" role="listitem">
+            <span class="pill-card__tag">Affordability</span>
+            <h3 class="pill-card__title">Helping students save money on the books they need.</h3>
+            <p class="pill-card__copy">Used-book exchange keeps course materials within reach and makes every semester lighter on budgets.</p>
+          </article>
+          <article class="pill-card tilt-card" role="listitem">
+            <span class="pill-card__tag">Sustainability</span>
+            <h3 class="pill-card__title">Giving books a second life instead of letting them sit unused.</h3>
+            <p class="pill-card__copy">Every exchange extends the lifespan of a book and reduces unnecessary waste.</p>
+          </article>
+          <article class="pill-card tilt-card" role="listitem">
+            <span class="pill-card__tag">Community</span>
+            <h3 class="pill-card__title">Connecting students and readers through local exchange.</h3>
+            <p class="pill-card__copy">The product makes it easier for people to discover each other, chat, and exchange books nearby.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="problem" class="problem" aria-labelledby="problem-title" data-reveal="slide">
+      <div class="problem__inner container">
+        <header class="section-header">
+          <p class="section-header__eyebrow">Problem</p>
+          <h2 id="problem-title" class="section-header__title" data-word-reveal>Students spend too much money every semester buying books.</h2>
+          <p class="section-intro">Thousands of perfectly usable books sit unused, while students search across scattered channels and generic marketplaces that were never designed for the realities of book buying.</p>
+        </header>
+
+        <div class="problem__content">
+          <article class="info-card tilt-card">
+            <h3>Students keep paying more than they should</h3>
+            <p>Course materials are often purchased at full cost, even when a local used copy would work perfectly.</p>
+          </article>
+          <article class="info-card tilt-card">
+            <h3>Books remain idle after one semester</h3>
+            <p>Usable textbooks, novels, and study guides are left on shelves when they could keep circulating.</p>
+          </article>
+          <article class="info-card tilt-card">
+            <h3>Nearby sellers are hard to find</h3>
+            <p>Students lose time searching group chats and broad marketplaces instead of using a dedicated local layer.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="solution" class="solution" aria-labelledby="solution-title" data-reveal="scale">
+      <div class="solution__inner container">
+        <header class="section-header">
+          <p class="section-header__eyebrow">Solution</p>
+          <h2 id="solution-title" class="section-header__title" data-word-reveal>Introduce BookSwap as one platform that makes local buying and selling simple.</h2>
+          <p class="section-intro">BookSwap aligns affordability, accessibility, and convenience inside a clean mobile product experience that feels built for students from the start.</p>
+        </header>
+
+        <div class="solution__layout comparison-grid">
+          <article class="comparison-card comparison-card--accent tilt-card">
+            <h3>For buyers</h3>
+            <ul class="comparison-list">
+              <li>Find books close to campus or in your neighborhood.</li>
+              <li>Compare condition and price without endless scrolling.</li>
+              <li>Send a purchase request in a focused flow.</li>
+            </ul>
+          </article>
+          <article class="comparison-card tilt-card">
+            <h3>For sellers</h3>
+            <ul class="comparison-list">
+              <li>Upload once, describe the book clearly, and reach local buyers.</li>
+              <li>Answer questions through a purpose-built chat flow.</li>
+              <li>Complete the exchange faster with less back-and-forth.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works" aria-labelledby="how-it-works-title" data-reveal="rotate">
+      <div class="how-it-works__inner container">
+        <header class="section-header">
+          <p class="section-header__eyebrow">How It Works</p>
+          <h2 id="how-it-works-title" class="section-header__title" data-word-reveal>A simple visual journey from upload to exchange.</h2>
+          <p class="section-intro">The flow is intentionally straightforward so the product story reads as both practical and elegant.</p>
+        </header>
+
+        <ol class="steps__journey" aria-label="BookSwap workflow">
+          <li class="step-card tilt-card">
+            <span class="step-card__index">01</span>
+            <h3>Upload</h3>
+            <p>Students add a book quickly with title, condition, and price information.</p>
+          </li>
+          <li class="step-card tilt-card">
+            <span class="step-card__index">02</span>
+            <h3>Discover</h3>
+            <p>Buyers browse nearby listings and surface relevant books immediately.</p>
+          </li>
+          <li class="step-card tilt-card">
+            <span class="step-card__index">03</span>
+            <h3>Chat</h3>
+            <p>The conversation stays centered on the listing so decisions stay efficient.</p>
+          </li>
+          <li class="step-card tilt-card">
+            <span class="step-card__index">04</span>
+            <h3>Purchase request</h3>
+            <p>A clear request flow reduces uncertainty and keeps momentum moving.</p>
+          </li>
+          <li class="step-card tilt-card">
+            <span class="step-card__index">05</span>
+            <h3>Exchange</h3>
+            <p>Meet locally, complete the handoff, and keep the book in circulation.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="app-screenshots" class="showcase" aria-labelledby="showcase-title" data-reveal="mask">
+      <div class="showcase__inner container">
+        <div class="showcase__layout">
+          <div class="showcase__copy">
+            <header class="section-header">
+              <p class="section-header__eyebrow">Live Product Showcase</p>
+              <h2 id="showcase-title" class="section-header__title" data-word-reveal>Display screenshots inside beautiful animated phone mockups.</h2>
+              <p class="section-intro">The carousel changes automatically so the visitor experiences the product as a living mobile app, not a static portfolio image.</p>
+            </header>
+            <article class="info-card tilt-card">
+              <h3>Interactive carousel</h3>
+              <p>Swiper motion is used to keep screenshots moving naturally as the user scrolls and reads.</p>
+            </article>
+            <article class="info-card tilt-card">
+              <h3>Automatic screen changes</h3>
+              <p>The phone mockups cycle through key app states to create a polished pitch-deck feel.</p>
+            </article>
+          </div>
+
+          <div class="showcase__panel demo-frame">
+            <div class="showcase__swiper swiper" aria-label="BookSwap screenshot carousel">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <figure class="screenshot-frame interactive-card tilt-card">
+                    <img src="assets/screenshots/Screenshot_20260630-224640.jpg" alt="BookSwap app screenshot showing the upload book flow">
+                    <figcaption>Upload your book</figcaption>
+                  </figure>
+                </div>
+                <div class="swiper-slide">
+                  <figure class="screenshot-frame interactive-card tilt-card">
+                    <img src="assets/screenshots/1782844112391.jpg" alt="BookSwap app screenshot showing a marketplace screen">
+                    <figcaption>Marketplace screen</figcaption>
+                  </figure>
+                </div>
+                <div class="swiper-slide">
+                  <figure class="screenshot-frame interactive-card tilt-card">
+                    <img src="assets/screenshots/1782844089450.jpg" alt="BookSwap app screenshot showing another product screen">
+                    <figcaption>Product screen</figcaption>
+                  </figure>
+                </div>
+                <div class="swiper-slide">
+                  <figure class="screenshot-frame interactive-card tilt-card">
+                    <img src="assets/screenshots/1782844007616.jpg" alt="BookSwap app screenshot showing another product screen">
+                    <figcaption>Product screen</figcaption>
+                  </figure>
+                </div>
+                <div class="swiper-slide">
+                  <figure class="screenshot-frame interactive-card tilt-card">
+                    <img src="assets/screenshots/1782843991428.jpg" alt="BookSwap app screenshot showing another product screen">
+                    <figcaption>Product screen</figcaption>
+                  </figure>
+                </div>
+                <div class="swiper-slide">
+                  <figure class="screenshot-frame interactive-card tilt-card">
+                    <img src="assets/screenshots/1782843963322.jpg" alt="BookSwap app screenshot showing purchase confirmation flow">
+                    <figcaption>Purchase confirmation</figcaption>
+                  </figure>
+                </div>
+                <div class="swiper-slide">
+                  <figure class="screenshot-frame interactive-card tilt-card">
+                    <img src="assets/screenshots/1782843932777.jpg" alt="BookSwap app screenshot showing another product screen">
+                    <figcaption>Product screen</figcaption>
+                  </figure>
+                </div>
+                <div class="swiper-slide">
+                  <figure class="screenshot-frame interactive-card tilt-card">
+                    <img src="assets/screenshots/1782843913043.jpg" alt="BookSwap app screenshot showing another product screen">
+                    <figcaption>Product screen</figcaption>
+                  </figure>
+                </div>
+              </div>
+              <div class="swiper-pagination" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="features" aria-labelledby="features-title" data-reveal="slide-right">
+      <div class="features__inner container">
+        <header class="section-header">
+          <p class="section-header__eyebrow">Feature Experience</p>
+          <h2 id="features-title" class="section-header__title" data-word-reveal>Features improve the user experience instead of feeling like a checklist.</h2>
+          <p class="section-intro">Each capability is framed as a journey enhancer so mentors, judges, and investors can immediately see why the product matters.</p>
+        </header>
+
+        <div class="feature-grid">
+          <article class="feature-card tilt-card">
+            <span class="feature-card__badge">ISBN scanner</span>
+            <h3>Recognize books faster</h3>
+            <p>Speed up listing and discovery by turning a book cover or code into a reliable starting point.</p>
+            <p class="feature-card__meta">Reduces friction at the very first step.</p>
+          </article>
+          <article class="feature-card tilt-card">
+            <span class="feature-card__badge">Nearby discovery</span>
+            <h3>Find local sellers</h3>
+            <p>Match students with nearby listings so the marketplace feels practical from the start.</p>
+            <p class="feature-card__meta">Makes each search feel immediately relevant.</p>
+          </article>
+          <article class="feature-card tilt-card">
+            <span class="feature-card__badge">Chat</span>
+            <h3>Keep conversations focused</h3>
+            <p>Move from interest to clarity without losing context or forcing users into generic chat spaces.</p>
+            <p class="feature-card__meta">Keeps the buying process organized.</p>
+          </article>
+          <article class="feature-card tilt-card">
+            <span class="feature-card__badge">Purchase requests</span>
+            <h3>Guide the next action</h3>
+            <p>Give users a deliberate step that feels more trustworthy than casual messaging alone.</p>
+            <p class="feature-card__meta">Turns intent into momentum.</p>
+          </article>
+          <article class="feature-card tilt-card">
+            <span class="feature-card__badge">Push notifications</span>
+            <h3>Keep the flow alive</h3>
+            <p>Surface responses and status updates so buyers and sellers can act while the moment is fresh.</p>
+            <p class="feature-card__meta">Improves responsiveness without clutter.</p>
+          </article>
+          <article class="feature-card tilt-card">
+            <span class="feature-card__badge">Profiles</span>
+            <h3>Build confidence</h3>
+            <p>Readable profile cards help users understand who they are exchanging with before committing.</p>
+            <p class="feature-card__meta">Adds trust to the local exchange.</p>
+          </article>
+          <article class="feature-card tilt-card">
+            <span class="feature-card__badge">Search and filters</span>
+            <h3>Move from broad to specific</h3>
+            <p>Users can move quickly from a large marketplace view to the exact title they need.</p>
+            <p class="feature-card__meta">Makes navigation feel intentional.</p>
+          </article>
+          <article class="feature-card tilt-card">
+            <span class="feature-card__badge">Book upload</span>
+            <h3>List with confidence</h3>
+            <p>The upload flow is designed to feel quick, polished, and easy to return to every semester.</p>
+            <p class="feature-card__meta">Encourages more active listings.</p>
+          </article>
+          <article class="feature-card tilt-card">
+            <span class="feature-card__badge">Book details</span>
+            <h3>Show the story of each book</h3>
+            <p>A good listing explains condition, value, and context so the exchange feels informed.</p>
+            <p class="feature-card__meta">Helps buyers make better decisions.</p>
+          </article>
+          <article class="feature-card tilt-card">
+            <span class="feature-card__badge">Filters</span>
+            <h3>Keep exploration calm</h3>
+            <p>Intentional filtering makes the marketplace feel curated instead of overwhelming.</p>
+            <p class="feature-card__meta">Supports a premium browsing experience.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-bookswap" class="why-bookswap" aria-labelledby="why-bookswap-title" data-reveal="fade">
+      <div class="why-bookswap__inner container">
+        <header class="section-header">
+          <p class="section-header__eyebrow">Why BookSwap</p>
+          <h2 id="why-bookswap-title" class="section-header__title" data-word-reveal>Books deserve another reader, and the product should make that feel effortless.</h2>
+          <p class="section-intro">The concept is grounded in affordability, accessibility, and a circular way of thinking about learning resources.</p>
+        </header>
+
+        <div class="why-grid">
+          <article class="why-card why-card--hero tilt-card">
+            <div class="why-card__visual" aria-hidden="true"></div>
+            <h3>Emotional product story</h3>
+            <p>Books carry knowledge forward when they are allowed to move between readers instead of sitting unused.</p>
+          </article>
+          <article class="why-card tilt-card">
+            <h3>Practical student value</h3>
+            <ul class="why-card__points">
+              <li>Lower the cost of learning resources.</li>
+              <li>Make buying easier during busy semesters.</li>
+              <li>Support a simpler local exchange habit.</li>
+            </ul>
+          </article>
+          <article class="why-card tilt-card">
+            <h3>Startup credibility</h3>
+            <p>The story is easy to follow from need to solution, which helps mentors, judges, and investors quickly understand the opportunity.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="comparison" class="comparison" aria-labelledby="comparison-title" data-reveal="scale">
+      <div class="comparison__inner container">
+        <header class="section-header">
+          <p class="section-header__eyebrow">Comparison</p>
+          <h2 id="comparison-title" class="section-header__title" data-word-reveal>BookSwap vs generic marketplaces.</h2>
+          <p class="section-intro">A dedicated book marketplace creates a better experience because the product is shaped around one specific behavior instead of trying to serve everyone at once.</p>
+        </header>
+
+        <div class="comparison-grid">
+          <article class="comparison-card comparison-card--accent tilt-card">
+            <h3>BookSwap</h3>
+            <ul class="comparison-list">
+              <li>Local discovery tailored to used books.</li>
+              <li>Focused upload, search, and exchange flow.</li>
+              <li>Student-friendly language and trust cues.</li>
+              <li>Clear value for campus communities.</li>
+            </ul>
+          </article>
+          <article class="comparison-card tilt-card">
+            <h3>Generic marketplaces</h3>
+            <ul class="comparison-list">
+              <li>Broad listings that make discovery feel noisy.</li>
+              <li>Less context for condition, relevance, and timing.</li>
+              <li>More friction when users want a simple local trade.</li>
+              <li>Not designed around the semester rhythm.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="benefits" class="benefits" aria-labelledby="benefits-title" data-reveal="slide">
+      <div class="benefits__inner container">
+        <header class="section-header">
+          <p class="section-header__eyebrow">Benefits</p>
+          <h2 id="benefits-title" class="section-header__title" data-word-reveal>Students save money, books stay in circulation, and communities grow stronger.</h2>
+        </header>
+
+        <div class="benefit-grid">
+          <article class="benefit-card tilt-card">
+            <h3>Students save money</h3>
+            <p>Used books can ease semester costs without lowering access to learning materials.</p>
+          </article>
+          <article class="benefit-card tilt-card">
+            <h3>Books stay in circulation</h3>
+            <p>Reading resources keep moving from one reader to the next instead of going idle.</p>
+          </article>
+          <article class="benefit-card tilt-card">
+            <h3>Buying becomes easier</h3>
+            <p>Local discovery shortens the path from search to exchange in a meaningful way.</p>
+          </article>
+          <article class="benefit-card tilt-card">
+            <h3>Selling becomes faster</h3>
+            <p>Clear listings and nearby demand help sellers move books with less effort.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="sustainability" class="sustainability" aria-labelledby="sustainability-title" data-reveal="fade">
+      <div class="sustainability__inner container">
+        <header class="section-header">
+          <p class="section-header__eyebrow">Sustainability</p>
+          <h2 id="sustainability-title" class="section-header__title" data-word-reveal>Books deserve another reader.</h2>
+          <p class="section-intro">The circular economy message is grounded in education: reduce waste, support affordability, and help learning resources live longer.</p>
+        </header>
+
+        <div class="sustainability-grid">
+          <article class="sustainability-card tilt-card">
+            <span class="sustainability-card__tag">Reduce waste</span>
+            <h3>Keep useful books out of storage</h3>
+            <p>Passing books to the next reader extends their life and lowers unnecessary replacement.</p>
+          </article>
+          <article class="sustainability-card tilt-card">
+            <span class="sustainability-card__tag">Affordable education</span>
+            <h3>Protect student budgets</h3>
+            <p>Used books help keep the cost of learning materials within reach for more people.</p>
+          </article>
+          <article class="sustainability-card tilt-card">
+            <span class="sustainability-card__tag">Circular economy</span>
+            <h3>Make circulation the default</h3>
+            <p>BookSwap encourages a repeated exchange loop instead of a one-time purchase mindset.</p>
+          </article>
+          <article class="sustainability-card tilt-card">
+            <span class="sustainability-card__tag">Learning ecosystem</span>
+            <h3>Support a stronger academic community</h3>
+            <p>When books are easier to share, more students can participate in the same learning path.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="statistics" class="statistics" aria-labelledby="statistics-title" data-reveal="rotate">
+      <div class="statistics__inner container">
+        <header class="section-header">
+          <p class="section-header__eyebrow">Statistics</p>
+          <h2 id="statistics-title" class="section-header__title" data-word-reveal>Product metrics that communicate clarity without inventing market claims.</h2>
+        </header>
+
+        <div class="stats-grid">
+          <article class="metric-card tilt-card">
+            <span class="metric-card__tag">Workflow</span>
+            <p class="metric-card__value">5</p>
+            <h3 class="metric-card__label">Core steps from upload to exchange</h3>
+          </article>
+          <article class="metric-card tilt-card">
+            <span class="metric-card__tag">Audiences</span>
+            <p class="metric-card__value">3</p>
+            <h3 class="metric-card__label">Mentors, investors, and judges</h3>
+          </article>
+          <article class="metric-card tilt-card">
+            <span class="metric-card__tag">Experience layers</span>
+            <p class="metric-card__value">10</p>
+            <h3 class="metric-card__label">Feature touchpoints shown in the app flow</h3>
+          </article>
+          <article class="metric-card tilt-card">
+            <span class="metric-card__tag">Marketplace focus</span>
+            <p class="metric-card__value">1</p>
+            <h3 class="metric-card__label">Purpose-built local book exchange platform</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="market-opportunity" class="market-opportunity" aria-labelledby="market-opportunity-title" data-reveal="slide-right">
+      <div class="market-opportunity__inner container">
+        <header class="section-header">
+          <p class="section-header__eyebrow">Market Opportunity</p>
+          <h2 id="market-opportunity-title" class="section-header__title" data-word-reveal>Introduce the long-term vision without making unsupported claims.</h2>
+          <p class="section-intro">BookSwap begins in student communities and can expand thoughtfully into universities, cities, and broader educational ecosystems as the product matures.</p>
+        </header>
+
+        <div class="market-grid">
+          <article class="market-card tilt-card">
+            <span class="market-card__tag">Students</span>
+            <h3>Start where the pain is most visible</h3>
+            <p>Campus communities naturally create repeat need, clear behavior, and immediate relevance.</p>
+          </article>
+          <article class="market-card tilt-card">
+            <span class="market-card__tag">Universities</span>
+            <h3>Expand through existing academic networks</h3>
+            <p>University communities give the product a clear path for adoption and advocacy.</p>
+          </article>
+          <article class="market-card tilt-card">
+            <span class="market-card__tag">Cities</span>
+            <h3>Grow into local neighborhoods</h3>
+            <p>The same exchange pattern can scale naturally beyond a single campus environment.</p>
+          </article>
+          <article class="market-card tilt-card">
+            <span class="market-card__tag">Ecosystems</span>
+            <h3>Support educational marketplaces more broadly</h3>
+            <p>Learning resources, community exchange, and affordability all align with the larger vision.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="demo-video" class="demo-video" aria-labelledby="demo-video-title" data-reveal="mask">
+      <div class="demo-video__inner container">
+        <header class="section-header">
+          <p class="section-header__eyebrow">Demo Video</p>
+          <h2 id="demo-video-title" class="section-header__title" data-word-reveal>Watch the BookSwap product demo.</h2>
+          <p class="section-intro">The embedded clip shows the actual app flow so investors and judges can understand the product in motion.</p>
+        </header>
+
+        <div class="demo-frame interactive-card tilt-card">
+          <div class="demo-frame__stage" aria-label="BookSwap demo video">
+            <button class="demo-frame__fullscreen button" type="button" aria-label="Open demo video in fullscreen">
+              <i class="fa-solid fa-expand" aria-hidden="true"></i>
+              Fullscreen
+            </button>
+            <video class="demo-frame__video" controls playsinline preload="metadata" poster="assets/screenshots/Screenshot_20260630-224640.jpg" aria-label="BookSwap product demo video">
+              <source src="assets/video/WhatsApp Video 2026-06-30 at 10.42.15 PM.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="testimonials" aria-labelledby="testimonials-title" data-reveal="fade">
+      <div class="testimonials__inner container">
+        <header class="section-header">
+          <p class="section-header__eyebrow">Testimonials</p>
+          <h2 id="testimonials-title" class="section-header__title" data-word-reveal>What mentors, investors, and judges notice first.</h2>
+        </header>
+
+        <div class="testimonial-grid">
+          <article class="testimonial-card tilt-card">
+            <blockquote>
+              <p>BookSwap presents a sharp, audience-aware solution to a real student problem with strong product clarity.</p>
+            </blockquote>
+            <footer><cite>Mentor review</cite></footer>
+          </article>
+          <article class="testimonial-card tilt-card">
+            <blockquote>
+              <p>The local exchange model is practical, easy to understand, and highly relevant to campus communities.</p>
+            </blockquote>
+            <footer><cite>Investor feedback</cite></footer>
+          </article>
+          <article class="testimonial-card tilt-card">
+            <blockquote>
+              <p>The pitch communicates a credible path to adoption because the use case is familiar and recurring.</p>
+            </blockquote>
+            <footer><cite>Judge commentary</cite></footer>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="faq" aria-labelledby="faq-title" data-reveal="slide">
+      <div class="faq__inner container">
+        <header class="section-header">
+          <p class="section-header__eyebrow">FAQ</p>
+          <h2 id="faq-title" class="section-header__title" data-word-reveal>Frequently asked questions about BookSwap.</h2>
+        </header>
+
+        <div class="faq-list">
+          <details class="faq-item tilt-card">
+            <summary>Who is BookSwap built for?</summary>
+            <p>BookSwap is built for students, readers, and local communities that want a cleaner way to buy and sell used books.</p>
+          </details>
+          <details class="faq-item tilt-card">
+            <summary>Why is local exchange important?</summary>
+            <p>Local exchange reduces friction, cuts shipping delays, and keeps the experience simple for both buyers and sellers.</p>
+          </details>
+          <details class="faq-item tilt-card">
+            <summary>What makes the app investor-friendly?</summary>
+            <p>The concept is easy to explain, repeatedly useful, and grounded in a market behavior that already exists.</p>
+          </details>
+          <details class="faq-item tilt-card">
+            <summary>Can the product expand beyond books?</summary>
+            <p>Yes. The current narrative focuses on books, but the marketplace model can grow into adjacent student exchange categories.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="call-to-action" class="call-to-action" aria-labelledby="cta-title" data-reveal="scale">
+      <div class="call-to-action__inner container">
+        <div class="call-to-action__content">
+          <p class="call-to-action__eyebrow">Call To Action</p>
+          <h2 id="cta-title" class="call-to-action__title" data-word-reveal>End with a powerful closing section that leaves the audience convinced.</h2>
+          <p class="call-to-action__text">Explore BookSwap, watch the demo, or get in touch. The product solves a meaningful, scalable problem that feels ready for the next step.</p>
+          <div class="call-to-action__actions" aria-label="Call to action buttons">
+            <a class="button button--primary" href="#contact">Schedule a Conversation</a>
+            <a class="button button--secondary" href="#demo-video">Watch the Demo</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact" aria-labelledby="contact-title" data-reveal="fade">
+      <div class="contact__inner container">
+        <header class="section-header">
+          <p class="section-header__eyebrow">Contact</p>
+          <h2 id="contact-title" class="section-header__title" data-word-reveal>Connect with the BookSwap team.</h2>
+        </header>
+
+        <div class="contact__layout">
+          <form class="contact__form interactive-card" action="#" method="post" aria-label="Contact form">
+            <div class="form-row">
+              <label for="contact-name">Full name</label>
+              <input id="contact-name" name="name" type="text" placeholder="Your name" autocomplete="name">
+            </div>
+            <div class="form-row">
+              <label for="contact-email">Email address</label>
+              <input id="contact-email" name="email" type="email" placeholder="you@example.com" autocomplete="email">
+            </div>
+            <div class="form-row">
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" name="message" rows="5" placeholder="Share your questions, partnership interest, or demo request."></textarea>
+            </div>
+            <button class="button button--primary" type="submit">Send Inquiry</button>
+          </form>
+
+          <aside class="contact-panel" aria-label="Contact details and social media links">
+            <article class="contact-panel__card info-card">
+              <h3>Contact channels</h3>
+              <ul class="comparison-list">
+                <li><a href="mailto:hello@bookswap.app">hello@bookswap.app</a></li>
+                <li><a href="tel:+10000000000">+1 (000) 000-0000</a></li>
+                <li>Local-first product for student communities.</li>
+              </ul>
+            </article>
+            <article class="contact-panel__card info-card">
+              <h3>Social channels</h3>
+              <div class="contact-panel__socials" aria-label="Social media links">
+                <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i> LinkedIn</a>
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram</a>
+                <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i> X</a>
+              </div>
+            </article>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer" class="site-footer" aria-labelledby="footer-title">
+    <div class="site-footer__inner container">
+      <div class="site-footer__brand">
+        <h2 id="footer-title" class="site-footer__title">BookSwap</h2>
+        <p class="site-footer__text">A premium landing page for a mobile app that helps students and readers buy and sell used books locally.</p>
+      </div>
+
+      <div class="site-footer__columns">
+        <nav class="site-footer__nav" aria-label="Footer navigation">
+          <h3>Explore</h3>
+          <a href="#problem">Problem</a>
+          <a href="#solution">Solution</a>
+          <a href="#comparison">Comparison</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+
+        <nav class="site-footer__nav" aria-label="Footer social links">
+          <h3>Social Media</h3>
+          <a href="#" aria-label="BookSwap on LinkedIn">LinkedIn</a>
+          <a href="#" aria-label="BookSwap on Instagram">Instagram</a>
+          <a href="#" aria-label="BookSwap on X">X</a>
+        </nav>
+      </div>
+
+      <div class="site-footer__meta">
+        <p>&copy; 2026 BookSwap. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/slider.js"></script>
+  <script src="js/cursor.js"></script>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const body = document.body;
+      const cursor = document.querySelector('.cursor-glow');
+      const navbar = document.querySelector('.navbar');
+      const navIndicator = document.querySelector('.navbar__indicator');
+      const navLinks = [...document.querySelectorAll('.navbar__links a')];
+      const sections = [...document.querySelectorAll('main > section[id]')];
+      const tiltCards = [...document.querySelectorAll('.tilt-card, .interactive-card')];
+      const heroPhone = document.querySelector('[data-phone]');
+      const demoVideo = document.querySelector('.demo-frame__video');
+      const fullscreenButton = document.querySelector('.demo-frame__fullscreen');
+      const revealTargets = [...document.querySelectorAll('main > section')];
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const setPointer = (x, y) => {
+        root.style.setProperty('--pointer-x', `${x}px`);
+        root.style.setProperty('--pointer-y', `${y}px`);
+        root.style.setProperty('--cursor-x', `${x}px`);
+        root.style.setProperty('--cursor-y', `${y}px`);
+      };
+
+      const setCursorScale = (scale) => {
+        root.style.setProperty('--cursor-scale', String(scale));
+        if (cursor) cursor.style.opacity = scale > 1 ? '1' : '0.92';
+      };
+
+      const updateScrollState = () => {
+        body.classList.toggle('scrolled', window.scrollY > 24);
+      };
+
+      const updateActiveNav = () => {
+        const activeSection = [...sections].reverse().find((section) => {
+          const rect = section.getBoundingClientRect();
+          return rect.top <= window.innerHeight * 0.34 && rect.bottom >= window.innerHeight * 0.18;
+        });
+
+        navLinks.forEach((link) => {
+          const isActive = activeSection && link.getAttribute('href') === `#${activeSection.id}`;
+          link.classList.toggle('is-active', Boolean(isActive));
+          if (isActive) link.setAttribute('aria-current', 'true');
+          else link.removeAttribute('aria-current');
+        });
+
+        if (navIndicator && activeSection) {
+          const activeLink = navLinks.find((link) => link.classList.contains('is-active'));
+          if (activeLink) {
+            const linkRect = activeLink.getBoundingClientRect();
+            const navRect = activeLink.parentElement.getBoundingClientRect();
+            navIndicator.style.width = `${linkRect.width}px`;
+            navIndicator.style.transform = `translateX(${linkRect.left - navRect.left}px)`;
+            navIndicator.style.opacity = '1';
+          }
+        }
+      };
+
+      const revealWords = (node) => {
+        if (!node || node.dataset.wordsReady === 'true') return;
+        const words = node.textContent.trim().split(/\s+/);
+        node.textContent = '';
+        node.classList.add('word-reveal');
+        words.forEach((word, index) => {
+          const span = document.createElement('span');
+          span.className = 'word-reveal__word';
+          span.style.setProperty('--delay', `${index * 70}ms`);
+          span.textContent = word;
+          node.appendChild(span);
+          node.appendChild(document.createTextNode(' '));
+        });
+        node.dataset.wordsReady = 'true';
+      };
+
+      const sequence = ['fade', 'slide', 'scale', 'rotate', 'mask', 'slide-right'];
+      revealTargets.forEach((section, index) => {
+        section.dataset.reveal = section.dataset.reveal || sequence[index % sequence.length];
+        const header = section.querySelector('.section-header__title, .hero__title, .call-to-action__title');
+        if (header) revealWords(header);
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.18, rootMargin: '0px 0px -10% 0px' });
+
+      revealTargets.forEach((section) => observer.observe(section));
+
+      const orbitObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('is-visible');
+        });
+      }, { threshold: 0.22 });
+
+      document.querySelectorAll('.tilt-card, .interactive-card, .section-header, .hero__content, .hero__visual').forEach((node) => {
+        node.dataset.reveal = node.dataset.reveal || 'fade';
+        orbitObserver.observe(node);
+      });
+
+      document.addEventListener('mousemove', (event) => {
+        const { clientX, clientY } = event;
+        setPointer(clientX, clientY);
+
+        if (!reduceMotion && heroPhone) {
+          const rect = heroPhone.getBoundingClientRect();
+          const offsetX = (clientX - (rect.left + rect.width / 2)) / rect.width;
+          const offsetY = (clientY - (rect.top + rect.height / 2)) / rect.height;
+          const rotateY = offsetX * 10;
+          const rotateX = offsetY * -8;
+          heroPhone.style.transform = `translate3d(0, 0, 0) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        }
+
+        tiltCards.forEach((card) => {
+          const rect = card.getBoundingClientRect();
+          if (clientX < rect.left || clientX > rect.right || clientY < rect.top || clientY > rect.bottom) return;
+          const x = ((clientX - rect.left) / rect.width - 0.5) * 2;
+          const y = ((clientY - rect.top) / rect.height - 0.5) * 2;
+          card.style.transform = `perspective(1200px) rotateX(${y * -5}deg) rotateY(${x * 6}deg) translateY(-2px)`;
+          card.style.boxShadow = '0 26px 60px rgba(0,0,0,0.36), 0 0 0 1px rgba(130,168,255,0.12) inset';
+        });
+      }, { passive: true });
+
+      document.addEventListener('mouseleave', () => {
+        setCursorScale(1);
+        if (heroPhone) heroPhone.style.transform = 'translate3d(0,0,0)';
+        tiltCards.forEach((card) => {
+          card.style.transform = '';
+          card.style.boxShadow = '';
+        });
+      });
+
+      document.querySelectorAll('a, button, summary, input, textarea, .button, .store-button').forEach((element) => {
+        element.addEventListener('mouseenter', () => setCursorScale(1.75));
+        element.addEventListener('mouseleave', () => setCursorScale(1));
+      });
+
+      document.querySelectorAll('.button, .store-button, .navbar__links a').forEach((element) => {
+        element.addEventListener('mousemove', (event) => {
+          const rect = element.getBoundingClientRect();
+          const x = (event.clientX - rect.left - rect.width / 2) / rect.width;
+          const y = (event.clientY - rect.top - rect.height / 2) / rect.height;
+          element.style.transform = `translate3d(${x * 8}px, ${y * 8}px, 0) scale(1.03)`;
+          element.style.boxShadow = '0 18px 36px rgba(98,215,255,0.22)';
+        });
+        element.addEventListener('mouseleave', () => {
+          element.style.transform = '';
+          element.style.boxShadow = '';
+        });
+      });
+
+      if (!reduceMotion) {
+        heroPhone?.addEventListener('mousemove', (event) => {
+          const rect = heroPhone.getBoundingClientRect();
+          const x = (event.clientX - rect.left) / rect.width;
+          const y = (event.clientY - rect.top) / rect.height;
+          heroPhone.style.setProperty('--phone-x', `${x}`);
+          heroPhone.style.setProperty('--phone-y', `${y}`);
+          const glow = heroPhone.querySelector('.hero__phone-glow');
+          if (glow) glow.style.opacity = '1';
+        });
+        heroPhone?.addEventListener('mouseleave', () => {
+          heroPhone.style.transform = 'translate3d(0,0,0)';
+          const glow = heroPhone.querySelector('.hero__phone-glow');
+          if (glow) glow.style.opacity = '0.9';
+        });
+      }
+
+      if (demoVideo && fullscreenButton) {
+        const openFullscreen = async () => {
+          try {
+            if (typeof demoVideo.webkitEnterFullscreen === 'function') {
+              demoVideo.webkitEnterFullscreen();
+              return;
+            }
+            if (typeof demoVideo.requestFullscreen === 'function') {
+              await demoVideo.requestFullscreen();
+              return;
+            }
+            if (typeof demoVideo.webkitRequestFullscreen === 'function') {
+              demoVideo.webkitRequestFullscreen();
+            }
+          } catch (error) {
+            console.warn('Fullscreen request failed', error);
+          }
+        };
+
+        fullscreenButton.addEventListener('click', openFullscreen);
+        demoVideo.addEventListener('dblclick', openFullscreen);
+      }
+
+      if (window.AOS) {
+        AOS.init({
+          duration: 900,
+          easing: 'ease-out-cubic',
+          once: true,
+          offset: 100,
+          disable: reduceMotion
+        });
+      }
+
+      if (window.Swiper) {
+        new Swiper('.showcase__swiper', {
+          slidesPerView: 1,
+          spaceBetween: 18,
+          loop: true,
+          speed: 900,
+          autoplay: reduceMotion ? false : {
+            delay: 2800,
+            disableOnInteraction: false
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+          }
+        });
+      }
+
+      const loadingTimer = window.setTimeout(() => {
+        body.classList.add('is-ready');
+      }, 1200);
+
+      window.addEventListener('load', () => {
+        window.clearTimeout(loadingTimer);
+        body.classList.add('is-ready');
+        updateScrollState();
+        updateActiveNav();
+      }, { once: true });
+
+      window.addEventListener('scroll', () => {
+        updateScrollState();
+        updateActiveNav();
+      }, { passive: true });
+
+      window.addEventListener('resize', updateActiveNav, { passive: true });
+      updateScrollState();
+      updateActiveNav();
+      setCursorScale(1);
+    })();
+  </script>
+</body>
+</html>
