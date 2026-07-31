@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="BookSwap Privacy Policy.">
+<meta name="theme-color" content="#8B4A29">
+<title>Privacy Policy | BookSwap</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Nunito+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --peach:#FBD9BD; --peach-deep:#F4B183; --cream:#FFF8F2; --cream-card:#FEF7F1; --cream-mid:#F6ECE2;
+    --brown:#8B4A29; --brown-dark:#6B3A1F; --brown-tint:#F2E2D6;
+    --ink:#2B211C; --ink-soft:#6B5D52; --line:#E9DFD3;
+    --shadow-soft: 0 8px 20px -10px rgba(107,58,31,.18);
+    --container: min(860px, calc(100vw - 40px));
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    font-family:'Nunito Sans',sans-serif;
+    color:var(--ink);
+    background:linear-gradient(180deg,#FBEEE0,#F3E7D9 40%,#EFE1D2);
+  }
+  h1,h2,.display{ font-family:'Lora',serif; }
+  a{ color:var(--brown-dark); text-decoration:underline; }
+  .container{ width:var(--container); margin:0 auto; padding:0 20px; }
+
+  .legal-header{ padding:56px 0 24px; text-align:center; }
+  .legal-header .eyebrow{
+    display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px;
+    font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--brown);
+    background:var(--brown-tint); padding:6px 14px; border-radius:999px; margin-bottom:14px;
+  }
+  .legal-header h1{ font-size:clamp(28px,5vw,42px); margin:0 0 8px; color:var(--brown-dark); }
+  .legal-header p{ color:var(--ink-soft); font-size:14px; margin:0; }
+  .legal-header a.back{ display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:700; text-decoration:none; color:var(--brown); margin-bottom:20px; }
+
+  .legal-card{
+    background:var(--cream-card); border:1px solid var(--line); border-radius:24px;
+    padding:44px; box-shadow:var(--shadow-soft); margin:0 0 64px;
+  }
+  .legal-card h2{ font-size:19px; color:var(--brown-dark); margin:34px 0 10px; }
+  .legal-card h2:first-child{ margin-top:0; }
+  .legal-card p{ line-height:1.75; color:var(--ink-soft); font-size:15px; margin:0 0 12px; }
+  .legal-card strong{ color:var(--ink); }
+
+  @media (max-width:640px){
+    .legal-card{ padding:28px 22px; border-radius:18px; }
+  }
+</style>
+
+<script>
+  // Central place for page filenames — update here if any file is renamed,
+  // and every page's navigation will update automatically.
+  window.BOOKSWAP_PAGES = {
+    index: "index_22_1_2_2.html",
+    terms: "terms.html",
+    privacy: "privacy.html",
+    refund: "refund.html",
+    service: "service.html",
+    shipping: "shipping.html"
+  };
+</script>
+</head>
+<body>
+
+  <div class="container">
+    <div class="legal-header">
+      <a class="back" data-page="index" href="#">&larr; Back to BookSwap</a>
+      <div><span class="eyebrow">Legal</span></div>
+      <h1>Privacy Policy</h1>
+
+      <p class="cross-nav" style="margin-top:10px;font-size:13px;"><a data-page="terms">Terms &amp; Conditions</a> &nbsp;·&nbsp; <a data-page="refund">Return &amp; Refund Policy</a> &nbsp;·&nbsp; <a data-page="service">Service Policy</a> &nbsp;·&nbsp; <a data-page="shipping">Shipping Policy</a></p>
+    </div>
+
+    <div class="legal-card">
+      <h2>Information We Collect</h2>
+      <p>We collect name, email, phone number, chat data and listing information to provide services.</p>
+
+      <h2>How We Use Data</h2>
+      <p>Data is used to manage accounts, display listings, improve services and provide support.</p>
+
+      <h2>Data Sharing</h2>
+      <p>We do not sell your data. Data may be shared only when required by law.</p>
+
+      <h2>Data Retention</h2>
+      <p>Some data may be kept after account deletion for legal and security reasons.</p>
+
+      <h2>Contact</h2>
+      <p><strong>Email:</strong> <a href="mailto:bookswap.tech@gmail.com">bookswap.tech@gmail.com</a></p>
+    </div>
+  </div>
+
+
+<script>
+  (function(){
+    var pages = window.BOOKSWAP_PAGES || {};
+    document.querySelectorAll('a[data-page]').forEach(function(a){
+      var key = a.getAttribute('data-page');
+      if (pages[key]) { a.setAttribute('href', pages[key]); }
+    });
+  })();
+</script>
+</body>
+</html>
