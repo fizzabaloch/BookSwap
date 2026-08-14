@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="BookSwap Account Deletion Policy. Learn how to delete your account and what happens to your information after deletion.">
+<meta name="theme-color" content="#8B4A29">
+<title>Account Deletion Policy | BookSwap</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Nunito+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --peach:#FBD9BD;
+    --peach-deep:#F4B183;
+    --cream:#FFF8F2;
+    --cream-card:#FEF7F1;
+    --cream-mid:#F6ECE2;
+
+    --brown:#8B4A29;
+    --brown-dark:#6B3A1F;
+    --brown-tint:#F2E2D6;
+
+    --ink:#2B211C;
+    --ink-soft:#6B5D52;
+    --line:#E9DFD3;
+
+    --shadow-soft:0 8px 20px -10px rgba(107,58,31,.18);
+
+    --container:min(860px, calc(100vw - 40px));
+  }
+
+  *{
+    box-sizing:border-box;
+  }
+
+  html{
+    scroll-behavior:smooth;
+  }
+
+  body{
+    margin:0;
+    font-family:'Nunito Sans',sans-serif;
+    color:var(--ink);
+    background:linear-gradient(
+      180deg,
+      #FBEEE0,
+      #F3E7D9 40%,
+      #EFE1D2
+    );
+  }
+
+  h1,
+  h2,
+  .display{
+    font-family:'Lora',serif;
+  }
+
+  a{
+    color:var(--brown-dark);
+    text-decoration:underline;
+  }
+
+  a:hover{
+    color:var(--brown);
+  }
+
+  .container{
+    width:var(--container);
+    margin:0 auto;
+    padding:0 20px;
+  }
+
+  /* Header */
+
+  .legal-header{
+    padding:56px 0 24px;
+    text-align:center;
+  }
+
+  .legal-header .eyebrow{
+    display:inline-block;
+
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+
+    color:var(--brown);
+
+    background:var(--brown-tint);
+
+    padding:6px 14px;
+    border-radius:999px;
+
+    margin-bottom:14px;
+  }
+
+  .legal-header h1{
+    font-size:clamp(28px,5vw,42px);
+    margin:0 0 8px;
+    color:var(--brown-dark);
+    line-height:1.2;
+  }
+
+  .legal-header p{
+    color:var(--ink-soft);
+    font-size:14px;
+    margin:0;
+  }
+
+  .legal-header a.back{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+
+    font-size:13px;
+    font-weight:700;
+
+    text-decoration:none;
+    color:var(--brown);
+
+    margin-bottom:20px;
+  }
+
+  .legal-header a.back:hover{
+    color:var(--brown-dark);
+  }
+
+  .cross-nav{
+    line-height:1.8;
+  }
+
+  .cross-nav a{
+    color:var(--brown);
+    font-weight:600;
+  }
+
+  /* Main Legal Card */
+
+  .legal-card{
+    background:var(--cream-card);
+
+    border:1px solid var(--line);
+    border-radius:24px;
+
+    padding:44px;
+
+    box-shadow:var(--shadow-soft);
+
+    margin:0 0 64px;
+  }
+
+  .legal-card h2{
+    font-size:19px;
+    color:var(--brown-dark);
+
+    margin:34px 0 10px;
+
+    line-height:1.4;
+  }
+
+  .legal-card h2:first-child{
+    margin-top:0;
+  }
+
+  .legal-card p{
+    line-height:1.75;
+    color:var(--ink-soft);
+    font-size:15px;
+
+    margin:0 0 12px;
+  }
+
+  .legal-card strong{
+    color:var(--ink);
+  }
+
+  .legal-card ul{
+    margin:8px 0 18px;
+    padding-left:24px;
+  }
+
+  .legal-card li{
+    color:var(--ink-soft);
+    font-size:15px;
+    line-height:1.7;
+    margin-bottom:5px;
+  }
+
+  /* Highlight Box */
+
+  .deletion-box{
+    background:var(--brown-tint);
+    border:1px solid #E6CDBB;
+
+    border-radius:16px;
+
+    padding:20px 22px;
+
+    margin:18px 0 28px;
+  }
+
+  .deletion-box p{
+    margin:0;
+    color:var(--brown-dark);
+  }
+
+  .deletion-box strong{
+    color:var(--brown-dark);
+  }
+
+  /* Account deletion path */
+
+  .delete-path{
+    display:inline-block;
+
+    background:#FFF8F2;
+
+    border:1px solid var(--line);
+    border-radius:10px;
+
+    padding:11px 15px;
+
+    color:var(--brown-dark);
+
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    font-weight:700;
+
+    margin:6px 0 14px;
+  }
+
+  /* Footer Contact */
+
+  .contact-box{
+    margin-top:28px;
+    padding-top:24px;
+
+    border-top:1px solid var(--line);
+  }
+
+  /* Responsive */
+
+  @media (max-width:640px){
+
+    .container{
+      width:100%;
+      padding:0 14px;
+    }
+
+    .legal-header{
+      padding:40px 0 20px;
+    }
+
+    .legal-header h1{
+      font-size:30px;
+    }
+
+    .legal-card{
+      padding:28px 22px;
+      border-radius:18px;
+      margin-bottom:40px;
+    }
+
+    .legal-card h2{
+      font-size:18px;
+      margin-top:30px;
+    }
+
+    .legal-card p,
+    .legal-card li{
+      font-size:14px;
+    }
+
+    .delete-path{
+      display:block;
+      overflow-x:auto;
+      white-space:nowrap;
+      font-size:12px;
+    }
+  }
+</style>
+
+<script>
+  // Central place for BookSwap page filenames.
+  // Update filenames here if you rename any pages.
+  window.BOOKSWAP_PAGES = {
+    index: "index.html",
+    terms: "terms.html",
+    privacy: "privacy.html",
+    refund: "refund.html",
+    service: "service.html",
+    shipping: "shipping.html",
+    deletion: "account-deletion.html"
+  };
+</script>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Header -->
+    <div class="legal-header">
+
+      <a class="back" data-page="index" href="#">
+        &larr; Back to BookSwap
+      </a>
+
+      <div>
+        <span class="eyebrow">Legal</span>
+      </div>
+
+      <h1>Account Deletion Policy</h1>
+
+      <p>
+        Last Updated: August 14, 2026
+      </p>
+
+      <p class="cross-nav" style="margin-top:10px;font-size:13px;">
+        <a data-page="terms">Terms &amp; Conditions</a>
+        &nbsp;·&nbsp;
+        <a data-page="privacy">Privacy Policy</a>
+        &nbsp;·&nbsp;
+        <a data-page="refund">Return &amp; Refund Policy</a>
+        &nbsp;·&nbsp;
+        <a data-page="service">Service Policy</a>
+        &nbsp;·&nbsp;
+        <a data-page="shipping">Shipping Policy</a>
+      </p>
+
+    </div>
+
+
+    <!-- Policy -->
+    <div class="legal-card">
+
+      <h2>1. How to Delete Your BookSwap Account</h2>
+
+      <p>
+        Deleting your BookSwap account is simple.
+      </p>
+
+      <p>
+        To delete your account, open the BookSwap application and follow this path:
+      </p>
+
+      <div class="delete-path">
+        BookSwap App → Settings → Delete Account
+      </div>
+
+      <p>
+        Follow the instructions displayed on the screen to confirm your decision.
+      </p>
+
+      <div class="deletion-box">
+        <p>
+          <strong>Important:</strong>
+          Once the deletion process is completed, your BookSwap account will no longer be available for normal use.
+        </p>
+      </div>
+
+
+      <h2>2. What Happens When You Delete Your Account</h2>
+
+      <p>
+        When you delete your account, BookSwap will delete or anonymize the personal information associated with your active account, subject to information that BookSwap is permitted or required to retain for legitimate purposes.
+      </p>
+
+      <p>
+        This may include deletion or removal of information such as:
+      </p>
+
+      <ul>
+        <li>Name</li>
+        <li>Phone number</li>
+        <li>Email address</li>
+        <li>Profile photograph</li>
+        <li>Profile information</li>
+        <li>Active listings</li>
+        <li>Wishlist information</li>
+        <li>Seller profile information</li>
+        <li>Verification information</li>
+        <li>Other personal information associated with your account</li>
+      </ul>
+
+      <p>
+        Deleted account information will no longer be used to operate an active BookSwap account.
+      </p>
+
+
+      <h2>3. Retention of a Deleted Account Identifier</h2>
+
+      <p>
+        BookSwap may retain a limited internal identifier associated with a deleted account, such as a deleted account ID.
+      </p>
+
+      <p>
+        This identifier may be retained for legitimate purposes including:
+      </p>
+
+      <ul>
+        <li>Security</li>
+        <li>Fraud prevention</li>
+        <li>Preventing repeated abuse of the platform</li>
+        <li>Maintaining transaction records</li>
+        <li>Investigating previous transactions</li>
+        <li>Complying with legal or regulatory requirements</li>
+        <li>Protecting BookSwap and its users</li>
+      </ul>
+
+      <p>
+        The retained identifier will not be used to maintain or reactivate the deleted account.
+      </p>
+
+      <p>
+        BookSwap will not use the retained identifier to continue providing personalized services to the deleted user.
+      </p>
+
+      <p>
+        The retained identifier is intended to function as an internal record that an account previously existed and was deleted.
+      </p>
+
+
+      <h2>4. No Continued Active Tracking</h2>
+
+      <p>
+        After account deletion, BookSwap will not continue to operate the deleted account as an active user account.
+      </p>
+
+      <p>
+        BookSwap will not use the deleted account to:
+      </p>
+
+      <ul>
+        <li>Send ordinary account communications</li>
+        <li>Display the user's profile</li>
+        <li>Display the user's active listings</li>
+        <li>Maintain the user's wishlist</li>
+        <li>Allow the user to continue using account features</li>
+        <li>Track the user's ordinary activity as an active BookSwap user</li>
+      </ul>
+
+      <p>
+        Any information retained after deletion will be limited to legitimate purposes disclosed in this Policy and our Privacy Policy.
+      </p>
+
+
+      <h2>5. Transaction and Security Records</h2>
+
+      <p>
+        BookSwap may retain limited transaction, payment, security, or fraud-prevention information where reasonably necessary for legitimate purposes.
+      </p>
+
+      <p>
+        For example, BookSwap may need to maintain a record that a particular transaction occurred, that a payment was processed, or that an account was previously associated with a transaction or security incident.
+      </p>
+
+      <p>
+        Where retention is necessary, BookSwap will seek to retain only the information reasonably required for the relevant purpose.
+      </p>
+
+
+      <h2>6. Active Transactions</h2>
+
+      <p>
+        If you have an active transaction when you request account deletion, BookSwap may need to retain limited information necessary to complete, record, or resolve that transaction.
+      </p>
+
+      <p>
+        This may include information relating to:
+      </p>
+
+      <ul>
+        <li>Order records</li>
+        <li>Payment records</li>
+        <li>Seller settlement</li>
+        <li>Delivery records</li>
+        <li>Transaction references</li>
+        <li>Fraud prevention</li>
+        <li>Dispute resolution</li>
+      </ul>
+
+      <p>
+        Deleting an account does not erase transaction records that BookSwap is legitimately required to maintain.
+      </p>
+
+
+      <h2>7. Paid Subscriptions</h2>
+
+      <p>
+        If you have an active BookSwap subscription, you should cancel the subscription before deleting your account.
+      </p>
+
+      <p>
+        Deleting your account does not automatically create a right to a refund.
+      </p>
+
+      <p>
+        Subscription refunds are governed by the BookSwap Refund Policy.
+      </p>
+
+
+      <h2>8. Deletion of Listings</h2>
+
+      <p>
+        When an account is deleted, the user's active book listings will generally be removed from the BookSwap marketplace.
+      </p>
+
+      <p>
+        The user will no longer be able to manage or edit those listings through the deleted account.
+      </p>
+
+
+      <h2>9. Information Retained for Legal or Security Reasons</h2>
+
+      <p>
+        BookSwap may retain limited information where necessary for:
+      </p>
+
+      <ul>
+        <li>Fraud prevention</li>
+        <li>Security</li>
+        <li>Legal compliance</li>
+        <li>Regulatory compliance</li>
+        <li>Accounting or financial recordkeeping</li>
+        <li>Payment records</li>
+        <li>Transaction verification</li>
+        <li>Dispute resolution</li>
+        <li>Establishing, exercising, or defending legal rights</li>
+      </ul>
+
+      <p>
+        Such information will not be retained for unrelated purposes merely because the account has been deleted.
+      </p>
+
+
+      <h2>10. Deletion Does Not Mean Immediate Erasure From Every Backup</h2>
+
+      <p>
+        Some information may remain temporarily in technical backups or disaster-recovery systems after an account deletion request.
+      </p>
+
+      <p>
+        Such information will not be restored to an active user account and will be deleted or overwritten according to BookSwap's applicable backup and retention procedures.
+      </p>
+
+
+      <h2>11. Creating a New Account</h2>
+
+      <p>
+        After deleting an account, a user may create a new BookSwap account in the future, subject to BookSwap's Terms of Service and verification requirements.
+      </p>
+
+      <p>
+        A previously deleted account does not automatically guarantee eligibility for a new account.
+      </p>
+
+      <p>
+        BookSwap may prevent or restrict the creation of new accounts where reasonably necessary to address fraud, abuse, security issues, or other legitimate concerns.
+      </p>
+
+
+      <h2>12. Account Deletion Through the Website</h2>
+
+      <p>
+        Because BookSwap is an Android application, users may also need an external method to request account deletion if they no longer have access to the application.
+      </p>
+
+      <p>
+        BookSwap maintains an account-deletion web resource at:
+      </p>
+
+      <div class="delete-path">
+        https://bookswapmarketplace.com/account-deletion
+      </div>
+
+      <p>
+        The web resource provides a method for users to request account deletion without requiring them to reinstall the application.
+      </p>
+
+
+      <h2>13. Questions About Account Deletion</h2>
+
+      <p>
+        For questions regarding account deletion or retained information, contact:
+      </p>
+
+      <div class="contact-box">
+        <p>
+          <strong>Email:</strong>
+          <a href="mailto:support@bookswapmarketplace.com">
+            support@bookswapmarketplace.com
+          </a>
+        </p>
+
+        <p>
+          <strong>BookSwap</strong><br>
+          Pakistan
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script>
+    (function(){
+      var pages = window.BOOKSWAP_PAGES || {};
+
+      document.querySelectorAll('a[data-page]').forEach(function(a){
+        var key = a.getAttribute('data-page');
+
+        if (pages[key]) {
+          a.setAttribute('href', pages[key]);
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>
