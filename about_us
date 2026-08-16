@@ -365,7 +365,7 @@
   // Update filenames here if you rename any page.
   window.BOOKSWAP_PAGES = {
     index: "index.html",
-    about: "about_us.html",
+    about_us: "about_us.html",
     terms: "terms.html",
     privacy: "privacy.html",
     refund: "refund.html",
