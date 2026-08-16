@@ -290,6 +290,7 @@
   // Update filenames here if you rename any pages.
   window.BOOKSWAP_PAGES = {
     index: "index.html",
+    about: "about.html",
     terms: "terms.html",
     privacy: "privacy.html",
     refund: "refund.html",
@@ -322,6 +323,8 @@
       </p>
 
       <p class="cross-nav" style="margin-top:10px;font-size:13px;">
+        <a data-page="about">About Us</a>
+        &nbsp;·&nbsp;
         <a data-page="terms">Terms &amp; Conditions</a>
         &nbsp;·&nbsp;
         <a data-page="privacy">Privacy Policy</a>
