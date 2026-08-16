@@ -365,7 +365,7 @@
   // Update filenames here if you rename any page.
   window.BOOKSWAP_PAGES = {
     index: "index.html",
-    about: "about_us.html",
+    about: "about.html",
     terms: "terms.html",
     privacy: "privacy.html",
     refund: "refund.html",
@@ -445,7 +445,9 @@
       <div class="feature-grid">
 
         <div class="feature">
-          <div class="feature-icon">📚</div>
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </div>
 
           <h3>Discover Books</h3>
 
@@ -457,7 +459,9 @@
 
 
         <div class="feature">
-          <div class="feature-icon">🔄</div>
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          </div>
 
           <h3>Give Books a New Life</h3>
 
@@ -469,7 +473,9 @@
 
 
         <div class="feature">
-          <div class="feature-icon">🏷️</div>
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 11 3.83A2 2 0 0 0 9.59 3.17L3 3v6.59a2 2 0 0 0 .66 1.41l9.58 9.59a2 2 0 0 0 2.83 0l4.52-4.52a2 2 0 0 0 0-2.66z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
+          </div>
 
           <h3>Sell Your Books</h3>
 
@@ -481,7 +487,9 @@
 
 
         <div class="feature">
-          <div class="feature-icon">❤️</div>
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
 
           <h3>Built for Readers</h3>
 
@@ -580,6 +588,12 @@
         <a data-page="privacy">Privacy Policy</a>
         &nbsp;·&nbsp;
         <a data-page="terms">Terms &amp; Conditions</a>
+        &nbsp;·&nbsp;
+        <a data-page="refund">Refund Policy</a>
+        &nbsp;·&nbsp;
+        <a data-page="service">Service Policy</a>
+        &nbsp;·&nbsp;
+        <a data-page="shipping">Shipping Policy</a>
         &nbsp;·&nbsp;
         <a data-page="deletion">Account Deletion</a>
       </p>
