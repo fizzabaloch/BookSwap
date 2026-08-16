@@ -295,7 +295,7 @@
     refund: "refund.html",
     service: "service.html",
     shipping: "shipping.html",
-    deletion: "account-deletion.html"
+    deletion: "deletion.html"
   };
 </script>
 </head>
