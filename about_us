@@ -365,13 +365,13 @@
   // Update filenames here if you rename any page.
   window.BOOKSWAP_PAGES = {
     index: "index.html",
-    about: "about.html",
+    about: "about_us.html",
     terms: "terms.html",
     privacy: "privacy.html",
     refund: "refund.html",
     service: "service.html",
     shipping: "shipping.html",
-    deletion: "account-deletion.html"
+    deletion: "deletion.html"
   };
 </script>
 </head>
