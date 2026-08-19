@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Learn more about BookSwap, a marketplace for buying, selling and discovering books.">
+<meta name="description" content="Learn more about_us BookSwap, a marketplace for buying, selling and discovering books.">
 <meta name="theme-color" content="#8B4A29">
-<title>About Us | BookSwap</title>
+<title>about_us Us | BookSwap</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -76,12 +76,12 @@
 
   /* Header */
 
-  .about-header{
+  .about_us-header{
     padding:56px 0 28px;
     text-align:center;
   }
 
-  .about-header .eyebrow{
+  .about_us-header .eyebrow{
     display:inline-block;
 
     font-family:'JetBrains Mono',monospace;
@@ -100,7 +100,7 @@
     margin-bottom:14px;
   }
 
-  .about-header h1{
+  .about_us-header h1{
     font-size:clamp(34px,6vw,48px);
     margin:0 0 12px;
 
@@ -108,7 +108,7 @@
     line-height:1.15;
   }
 
-  .about-header .intro{
+  .about_us-header .intro{
     max-width:650px;
     margin:0 auto;
 
@@ -137,7 +137,7 @@
 
   /* Main Card */
 
-  .about-card{
+  .about_us-card{
     background:var(--cream-card);
 
     border:1px solid var(--line);
@@ -150,7 +150,7 @@
     margin-bottom:64px;
   }
 
-  .about-card h2{
+  .about_us-card h2{
     font-size:22px;
     color:var(--brown-dark);
 
@@ -159,11 +159,11 @@
     line-height:1.4;
   }
 
-  .about-card h2:first-child{
+  .about_us-card h2:first-child{
     margin-top:0;
   }
 
-  .about-card p{
+  .about_us-card p{
     color:var(--ink-soft);
     font-size:15px;
     line-height:1.8;
@@ -171,7 +171,7 @@
     margin:0 0 14px;
   }
 
-  .about-card strong{
+  .about_us-card strong{
     color:var(--ink);
   }
 
@@ -319,30 +319,30 @@
       padding:0 14px;
     }
 
-    .about-header{
+    .about_us-header{
       padding:40px 0 24px;
     }
 
-    .about-header h1{
+    .about_us-header h1{
       font-size:34px;
     }
 
-    .about-header .intro{
+    .about_us-header .intro{
       font-size:15px;
     }
 
-    .about-card{
+    .about_us-card{
       padding:28px 22px;
       border-radius:18px;
       margin-bottom:40px;
     }
 
-    .about-card h2{
+    .about_us-card h2{
       font-size:20px;
       margin-top:30px;
     }
 
-    .about-card p{
+    .about_us-card p{
       font-size:14px;
     }
 
@@ -365,7 +365,7 @@
   // Update filenames here if you rename any page.
   window.BOOKSWAP_PAGES = {
     index: "index.html",
-    about: "about.html",
+    about_us: "about_us.html",
     terms: "terms.html",
     privacy: "privacy.html",
     refund: "refund.html",
@@ -381,14 +381,14 @@
   <div class="container">
 
     <!-- Header -->
-    <header class="about-header">
+    <header class="about_us-header">
 
       <a class="back" data-page="index" href="#">
         &larr; Back to BookSwap
       </a>
 
       <div>
-        <span class="eyebrow">About BookSwap</span>
+        <span class="eyebrow">about_us BookSwap</span>
       </div>
 
       <h1>Books deserve a second chapter.</h1>
@@ -402,7 +402,7 @@
 
 
     <!-- Main Content -->
-    <main class="about-card">
+    <main class="about_us-card">
 
       <h2>Who We Are</h2>
 
