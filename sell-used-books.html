@@ -379,21 +379,6 @@
       var yearEl = document.getElementById('year');
       if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-      // Smooth cross-page transitions (View Transitions API) so the navbar
-      // reads as one continuous bar instead of a hard reload between pages.
-      if (document.startViewTransition) {
-        document.querySelectorAll('a[data-page]').forEach(function(a){
-          a.addEventListener('click', function(e){
-            var href = a.getAttribute('href');
-            if (!href || href === '#' || a.target === '_blank') return;
-            e.preventDefault();
-            document.startViewTransition(function(){
-              window.location.href = href;
-            });
-          });
-        });
-      }
-
       // mobile nav toggle
       var navToggle = document.querySelector('[data-nav-toggle]');
       var navLinksWrap = document.querySelector('.navbar__links');
@@ -408,6 +393,7 @@
   </script>
 
   <style>
+    @view-transition { navigation: auto; }
     ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.22s; }
     @media (prefers-reduced-motion: reduce) {
       ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
