@@ -3,13 +3,42 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Learn more about BookSwap, a marketplace for buying, selling and discovering books.">
+<title>About Us | BookSwap — Buy &amp; Sell Used Books in Pakistan</title>
+<meta name="description" content="BookSwap is a Pakistan-based marketplace that helps readers buy and sell used books easily. Learn our story, mission, and what makes BookSwap different.">
 <meta name="theme-color" content="#8B4A29">
-<title>About Us | BookSwap</title>
+<link rel="canonical" href="https://www.bookswap.pk/about_us.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BookSwap">
+<meta property="og:title" content="About BookSwap — Buy & Sell Used Books">
+<meta property="og:description" content="A Pakistan-based marketplace helping readers discover, buy and sell used books. Learn how BookSwap started and where it's headed.">
+<meta property="og:url" content="https://www.bookswap.pk/about_us.html">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="About BookSwap — Buy & Sell Used Books">
+<meta name="twitter:description" content="A Pakistan-based marketplace helping readers discover, buy and sell used books.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Nunito+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About BookSwap",
+  "url": "https://www.bookswap.pk/about_us.html",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "BookSwap",
+    "url": "https://www.bookswap.pk/",
+    "description": "BookSwap is a Pakistan-based marketplace for buying and selling used books.",
+    "areaServed": "PK"
+  }
+}
+</script>
 
 <style>
   :root{
@@ -28,341 +57,164 @@
     --line:#E9DFD3;
 
     --shadow-soft:0 8px 20px -10px rgba(107,58,31,.18);
+    --shadow-lift:0 20px 44px -20px rgba(107,58,31,.35);
 
-    --container:min(860px, calc(100vw - 40px));
+    --container:min(1080px, calc(100vw - 40px));
+    --container-narrow:min(760px, calc(100vw - 40px));
   }
 
-  *{
-    box-sizing:border-box;
-  }
-
-  html{
-    scroll-behavior:smooth;
-  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
 
   body{
     margin:0;
     font-family:'Nunito Sans',sans-serif;
     color:var(--ink);
-
-    background:linear-gradient(
-      180deg,
-      #FBEEE0,
-      #F3E7D9 40%,
-      #EFE1D2
-    );
+    background:linear-gradient(180deg,#FBEEE0,#F3E7D9 40%,#EFE1D2);
   }
 
-  h1,
-  h2,
-  .display{
-    font-family:'Lora',serif;
+  h1,h2,h3,.display{ font-family:'Lora',serif; }
+
+  a{ color:var(--brown-dark); }
+
+  .container{ width:var(--container); margin:0 auto; padding:0 20px; }
+  .container-narrow{ width:var(--container-narrow); margin:0 auto; padding:0 20px; }
+
+  .icon{ width:22px; height:22px; stroke:currentColor; fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
+
+  /* Header / nav (matches site) */
+  .site-header{ padding:22px 0; }
+  .navbar__inner{ display:flex; align-items:center; justify-content:space-between; gap:20px; }
+  .navbar__brand{ display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .navbar__brand-text strong{ display:block; font-family:'Lora',serif; color:var(--brown-dark); font-size:16px; }
+  .navbar__brand-text span{ display:block; font-size:11px; color:var(--ink-soft); }
+  .brand-mark{ width:38px; height:38px; border-radius:11px; background:var(--brown); color:#fff; display:flex; align-items:center; justify-content:center; }
+  .navbar__links{ display:flex; align-items:center; gap:22px; }
+  .navbar__links a{ font-size:14px; font-weight:700; text-decoration:none; color:var(--ink-soft); }
+  .navbar__links a:hover, .navbar__links a.is-active{ color:var(--brown-dark); }
+  .btn{ display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:10px 18px; border-radius:999px; font-size:13px; font-weight:800; text-decoration:none; }
+  .btn-primary{ background:var(--brown); color:#fff; box-shadow:0 6px 14px -8px rgba(107,58,31,.55); }
+  .btn-primary:hover{ background:var(--brown-dark); color:#fff; }
+
+  /* Hero */
+  .about-hero{ padding:44px 0 20px; text-align:center; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase;
+    color:var(--brown); background:var(--brown-tint);
+    padding:6px 14px; border-radius:999px; margin-bottom:16px;
+  }
+  .about-hero h1{
+    font-size:clamp(32px,5.4vw,52px); margin:0 0 14px;
+    color:var(--brown-dark); line-height:1.14;
+  }
+  .about-hero .intro{
+    max-width:640px; margin:0 auto; color:var(--ink-soft);
+    font-size:16.5px; line-height:1.75;
   }
 
-  a{
-    color:var(--brown-dark);
-    text-decoration:underline;
+  /* Stats strip */
+  .stats{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:14px;
+    margin:34px 0 46px;
   }
-
-  a:hover{
-    color:var(--brown);
+  .stat{
+    background:var(--cream-card); border:1px solid var(--line);
+    border-radius:18px; padding:22px 16px; text-align:center;
   }
+  .stat strong{ display:block; font-family:'Lora',serif; font-size:26px; color:var(--brown-dark); }
+  .stat span{ display:block; font-size:12.5px; color:var(--ink-soft); margin-top:4px; }
 
-  .container{
-    width:var(--container);
-    margin:0 auto;
-    padding:0 20px;
+  /* Layout: content + side rail */
+  .about-layout{
+    display:grid; grid-template-columns:1.55fr 1fr; gap:24px;
+    align-items:start; margin-bottom:56px;
   }
-
-  /* Header */
-
-  .about-header{
-    padding:56px 0 28px;
-    text-align:center;
-  }
-
-  .about-header .eyebrow{
-    display:inline-block;
-
-    font-family:'JetBrains Mono',monospace;
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-
-    color:var(--brown);
-
-    background:var(--brown-tint);
-
-    padding:6px 14px;
-    border-radius:999px;
-
-    margin-bottom:14px;
-  }
-
-  .about-header h1{
-    font-size:clamp(34px,6vw,48px);
-    margin:0 0 12px;
-
-    color:var(--brown-dark);
-    line-height:1.15;
-  }
-
-  .about-header .intro{
-    max-width:650px;
-    margin:0 auto;
-
-    color:var(--ink-soft);
-    font-size:16px;
-    line-height:1.75;
-  }
-
-  .back{
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-
-    font-size:13px;
-    font-weight:700;
-
-    text-decoration:none;
-    color:var(--brown);
-
-    margin-bottom:22px;
-  }
-
-  .back:hover{
-    color:var(--brown-dark);
-  }
-
-  /* Main Card */
 
   .about-card{
-    background:var(--cream-card);
-
-    border:1px solid var(--line);
-    border-radius:24px;
-
-    padding:44px;
-
-    box-shadow:var(--shadow-soft);
-
-    margin-bottom:64px;
+    background:var(--cream-card); border:1px solid var(--line);
+    border-radius:24px; padding:42px; box-shadow:var(--shadow-soft);
   }
-
-  .about-card h2{
-    font-size:22px;
-    color:var(--brown-dark);
-
-    margin:36px 0 12px;
-
-    line-height:1.4;
-  }
-
-  .about-card h2:first-child{
-    margin-top:0;
-  }
-
-  .about-card p{
-    color:var(--ink-soft);
-    font-size:15px;
-    line-height:1.8;
-
-    margin:0 0 14px;
-  }
-
-  .about-card strong{
-    color:var(--ink);
-  }
-
-  /* Mission */
+  .about-card h2{ font-size:21px; color:var(--brown-dark); margin:34px 0 12px; line-height:1.4; }
+  .about-card h2:first-child{ margin-top:0; }
+  .about-card p{ color:var(--ink-soft); font-size:15px; line-height:1.8; margin:0 0 14px; }
+  .about-card strong{ color:var(--ink); }
 
   .mission{
-    background:var(--brown-tint);
-
-    border:1px solid #E6CDBB;
-
-    border-radius:18px;
-
-    padding:24px 25px;
-
-    margin:22px 0 30px;
+    background:var(--brown-tint); border:1px solid #E6CDBB;
+    border-radius:18px; padding:24px 25px; margin:20px 0 30px;
+    display:flex; gap:14px; align-items:flex-start;
   }
+  .mission .icon{ color:var(--brown-dark); flex-shrink:0; margin-top:2px; }
+  .mission p{ color:var(--brown-dark); font-size:16.5px; line-height:1.7; margin:0; font-family:'Lora',serif; }
 
-  .mission p{
-    color:var(--brown-dark);
-    font-size:17px;
-    line-height:1.7;
-    margin:0;
-    font-family:'Lora',serif;
+  /* Side rail */
+  .rail{ display:flex; flex-direction:column; gap:16px; position:sticky; top:24px; }
+  .rail-card{
+    background:var(--cream-card); border:1px solid var(--line);
+    border-radius:20px; padding:24px;
   }
+  .rail-card h3{ font-size:14px; text-transform:uppercase; letter-spacing:.04em; color:var(--brown); margin:0 0 14px; font-family:'JetBrains Mono',monospace; font-weight:700; }
+  .rail-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px; }
+  .rail-list li{ display:flex; gap:12px; align-items:flex-start; }
+  .rail-list .icon-wrap{
+    width:34px; height:34px; border-radius:10px; background:var(--brown-tint);
+    color:var(--brown-dark); display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .rail-list .icon{ width:18px; height:18px; }
+  .rail-list h4{ margin:0 0 2px; font-size:14px; color:var(--ink); font-family:'Nunito Sans',sans-serif; font-weight:800; }
+  .rail-list p{ margin:0; font-size:13px; color:var(--ink-soft); line-height:1.6; }
+
+  .rail-cta{ text-align:center; }
+  .rail-cta p{ font-size:14px; color:var(--ink-soft); margin:0 0 14px; line-height:1.6; }
+  .rail-cta .btn{ width:100%; }
 
   /* Feature Grid */
-
-  .feature-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:16px;
-
-    margin:24px 0 30px;
-  }
-
-  .feature{
-    background:#FFF8F2;
-
-    border:1px solid var(--line);
-    border-radius:16px;
-
-    padding:22px;
-  }
-
+  .feature-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin:24px 0 30px; }
+  .feature{ background:#FFF8F2; border:1px solid var(--line); border-radius:16px; padding:22px; }
   .feature-icon{
-    width:42px;
-    height:42px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:var(--brown-tint);
-
-    border-radius:12px;
-
-    color:var(--brown-dark);
-
-    font-size:20px;
-
-    margin-bottom:14px;
+    width:42px; height:42px; display:flex; align-items:center; justify-content:center;
+    background:var(--brown-tint); border-radius:12px; color:var(--brown-dark); margin-bottom:14px;
   }
-
-  .feature h3{
-    font-family:'Lora',serif;
-    font-size:17px;
-
-    color:var(--brown-dark);
-
-    margin:0 0 7px;
-  }
-
-  .feature p{
-    font-size:14px;
-    line-height:1.65;
-    margin:0;
-  }
+  .feature h3{ font-family:'Lora',serif; font-size:17px; color:var(--brown-dark); margin:0 0 7px; }
+  .feature p{ font-size:14px; line-height:1.65; margin:0; color:var(--ink-soft); }
 
   /* Closing */
-
-  .closing{
-    margin-top:34px;
-    padding-top:26px;
-
-    border-top:1px solid var(--line);
-
-    text-align:center;
-  }
-
-  .closing h2{
-    margin-top:0;
-  }
-
-  .closing p{
-    max-width:620px;
-    margin:0 auto 18px;
-  }
-
-  .button{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-
-    padding:11px 20px;
-
-    background:var(--brown);
-    color:white;
-
-    border-radius:999px;
-
-    font-size:14px;
-    font-weight:800;
-
-    text-decoration:none;
-
-    box-shadow:0 6px 14px -8px rgba(107,58,31,.55);
-  }
-
-  .button:hover{
-    color:white;
-    background:var(--brown-dark);
-  }
+  .closing{ margin-top:34px; padding-top:26px; border-top:1px solid var(--line); text-align:center; }
+  .closing h2{ margin-top:0; }
+  .closing p{ max-width:560px; margin:0 auto 18px; }
 
   /* Footer */
+  .footer{ text-align:center; padding:0 0 45px; color:var(--ink-soft); font-size:13px; }
+  .footer a{ color:var(--brown); font-weight:600; text-decoration:none; }
+  .footer a:hover{ text-decoration:underline; }
 
-  .footer{
-    text-align:center;
-    padding:0 0 45px;
+  /* Fade transition for AJAX nav */
+  body{ transition: opacity .16s ease; }
+  body.page-loading{ opacity:.4; }
 
-    color:var(--ink-soft);
-    font-size:13px;
+  @media (max-width:900px){
+    .about-layout{ grid-template-columns:1fr; }
+    .rail{ position:static; }
+    .stats{ grid-template-columns:repeat(2,1fr); }
   }
-
-  .footer a{
-    color:var(--brown);
-    font-weight:600;
-  }
-
-  /* Responsive */
 
   @media (max-width:640px){
-
-    .container{
-      width:100%;
-      padding:0 14px;
-    }
-
-    .about-header{
-      padding:40px 0 24px;
-    }
-
-    .about-header h1{
-      font-size:34px;
-    }
-
-    .about-header .intro{
-      font-size:15px;
-    }
-
-    .about-card{
-      padding:28px 22px;
-      border-radius:18px;
-      margin-bottom:40px;
-    }
-
-    .about-card h2{
-      font-size:20px;
-      margin-top:30px;
-    }
-
-    .about-card p{
-      font-size:14px;
-    }
-
-    .feature-grid{
-      grid-template-columns:1fr;
-    }
-
-    .mission{
-      padding:20px;
-    }
-
-    .mission p{
-      font-size:16px;
-    }
+    .navbar__links{ display:none; }
+    .about-hero{ padding:32px 0 18px; }
+    .about-card{ padding:28px 22px; border-radius:18px; }
+    .about-card h2{ font-size:19px; margin-top:28px; }
+    .about-card p{ font-size:14px; }
+    .feature-grid{ grid-template-columns:1fr; }
+    .mission{ padding:20px; flex-direction:column; }
+    .mission p{ font-size:15.5px; }
+    .stats{ grid-template-columns:1fr 1fr; }
   }
 </style>
 
 <script>
   // Central place for BookSwap page filenames.
-  // Update filenames here if you rename any page.
   window.BOOKSWAP_PAGES = {
     index: "index.html",
     about_us: "about_us.html",
@@ -373,7 +225,7 @@
     refund: "refund.html",
     service: "service.html",
     shipping: "shipping.html",
-    deletion: "deletion.html"
+    account_deletion: "deletion.html"
   };
 </script>
 </head>
@@ -381,243 +233,288 @@
 <body>
 
   <div class="container">
-
-    <!-- Header -->
-    <header class="about-header">
-
-      <a class="back" data-page="index" href="#">
-        &larr; Back to BookSwap
-      </a>
-
-      <div>
-        <span class="eyebrow">About BookSwap</span>
+    <header class="site-header">
+      <div class="navbar__inner">
+        <a class="navbar__brand" data-page="index" href="#">
+          <span class="brand-mark" aria-hidden="true">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M4 5.5C4 4.7 4.7 4 5.5 4H12v16H5.5c-.8 0-1.5-.7-1.5-1.5v-13Z"/><path d="M20 5.5c0-.8-.7-1.5-1.5-1.5H12v16h6.5c.8 0 1.5-.7 1.5-1.5v-13Z"/></svg>
+          </span>
+          <span class="navbar__brand-text">
+            <strong>BookSwap</strong>
+            <span>Buy &amp; sell used books near you</span>
+          </span>
+        </a>
+        <nav class="navbar__links" aria-label="Primary navigation">
+          <a data-page="buy" href="#">Buy Books</a>
+          <a data-page="sell" href="#">Sell Books</a>
+          <a data-page="about_us" href="#" class="is-active">About Us</a>
+        </nav>
+        <a class="btn btn-primary" data-page="index" href="#">
+          <svg class="icon" style="width:16px;height:16px" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+          Back to Home
+        </a>
       </div>
+    </header>
 
+    <!-- Hero -->
+    <section class="about-hero">
+      <span class="eyebrow">
+        <svg class="icon" style="width:13px;height:13px" viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        About BookSwap
+      </span>
       <h1>Books deserve a second chapter.</h1>
-
       <p class="intro">
         BookSwap is a marketplace built to make it easier for people to
         discover, buy, sell, and give new life to books they no longer need.
       </p>
+    </section>
 
-    </header>
+    <!-- Stats -->
+    <section class="stats" aria-label="BookSwap at a glance">
+      <div class="stat"><strong>Pakistan</strong><span>Built &amp; based here</span></div>
+      <div class="stat"><strong>1000s</strong><span>Of books listed</span></div>
+      <div class="stat"><strong>Direct</strong><span>Reader-to-reader</span></div>
+      <div class="stat"><strong>Simple</strong><span>List in minutes</span></div>
+    </section>
 
+    <div class="about-layout">
+      <!-- Main Content -->
+      <main class="about-card">
 
-    <!-- Main Content -->
-    <main class="about-card">
-
-      <h2>Who We Are</h2>
-
-      <p>
-        BookSwap is a book marketplace designed for people who love reading
-        and believe that a good book should never have to sit forgotten on a
-        shelf.
-      </p>
-
-      <p>
-        We created BookSwap to make buying and selling books simpler,
-        more accessible, and more convenient. Whether you're looking for
-        your next read, clearing space from your bookshelf, or searching
-        for a particular title, BookSwap brings readers and book sellers
-        together in one place.
-      </p>
-
-
-      <div class="mission">
+        <h2>Who We Are</h2>
         <p>
-          Our goal is simple: help more books find the readers who will
-          appreciate them.
+          BookSwap is a book marketplace designed for people who love reading
+          and believe that a good book should never have to sit forgotten on a
+          shelf.
         </p>
-      </div>
-
-
-      <h2>What We Do</h2>
-
-      <p>
-        BookSwap provides a marketplace where users can list books they want
-        to sell and discover books listed by other users.
-      </p>
-
-      <p>
-        We aim to create a convenient experience where finding a book is
-        easier and selling books you no longer need is just as simple.
-      </p>
-
-
-      <div class="feature-grid">
-
-        <div class="feature">
-          <div class="feature-icon">📚</div>
-
-          <h3>Discover Books</h3>
-
-          <p>
-            Browse book listings and discover titles that match your interests,
-            reading goals, and collection.
-          </p>
-        </div>
-
-
-        <div class="feature">
-          <div class="feature-icon">🔄</div>
-
-          <h3>Give Books a New Life</h3>
-
-          <p>
-            Help books move from one reader to another instead of remaining
-            unused on a bookshelf.
-          </p>
-        </div>
-
-
-        <div class="feature">
-          <div class="feature-icon">🏷️</div>
-
-          <h3>Sell Your Books</h3>
-
-          <p>
-            List books you no longer need and connect with people who may
-            be looking for them.
-          </p>
-        </div>
-
-
-        <div class="feature">
-          <div class="feature-icon">❤️</div>
-
-          <h3>Built for Readers</h3>
-
-          <p>
-            BookSwap is designed around the needs of readers, collectors,
-            students, and anyone who enjoys discovering great books.
-          </p>
-        </div>
-
-      </div>
-
-
-      <h2>Why BookSwap?</h2>
-
-      <p>
-        Books can be expensive, difficult to find, or simply left unused
-        after they have been read. At the same time, someone else may be
-        searching for exactly the book sitting on your shelf.
-      </p>
-
-      <p>
-        BookSwap helps connect those two sides. By creating a marketplace
-        dedicated to books, we want to make it easier for books to continue
-        their journey from one reader to another.
-      </p>
-
-
-      <h2>Our Vision</h2>
-
-      <p>
-        We envision a community where buying and selling books feels natural,
-        convenient, and accessible.
-      </p>
-
-      <p>
-        We want BookSwap to become a trusted destination for people who
-        want to discover books, share books, and find value in the books
-        they already own.
-      </p>
-
-
-      <h2>Our Community</h2>
-
-      <p>
-        BookSwap is powered by its community of readers and sellers.
-        Every listing represents a book that can potentially reach a new
-        reader, and every purchase can give an existing book another chapter.
-      </p>
-
-      <p>
-        We believe that a strong marketplace starts with a respectful,
-        trustworthy community. That's why we continue working to improve
-        the experience, safety, and reliability of BookSwap for everyone.
-      </p>
-
-
-      <h2>Built in Pakistan</h2>
-
-      <p>
-        BookSwap is a Pakistan-based platform created with the goal of making
-        book buying and selling more convenient for readers and book lovers.
-      </p>
-
-      <p>
-        We are building BookSwap with a focus on simplicity, accessibility,
-        and a marketplace experience that puts books and readers first.
-      </p>
-
-
-      <div class="closing">
-
-        <h2>Have a Book to Swap?</h2>
-
         <p>
-          Discover your next read or give one of your books a new home
-          with BookSwap.
+          We created BookSwap to make buying and selling books simpler,
+          more accessible, and more convenient. Whether you're looking for
+          your next read, clearing space from your bookshelf, or searching
+          for a particular title, BookSwap brings readers and book sellers
+          together in one place.
         </p>
 
-        <a class="button" data-page="index" href="#">
-          Explore BookSwap
-        </a>
-        &nbsp;
-        <a class="button" data-page="sell" href="#" style="background:var(--brown-dark);">
-          Sell a Book
-        </a>
-        &nbsp;
-        <a class="button" data-page="buy" href="#" style="background:var(--brown-dark);">
-          Buy a Book
-        </a>
+        <div class="mission">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 2v4"/><path d="m6.3 6.3 2.8 2.8"/><path d="M2 12h4"/><path d="m6.3 17.7 2.8-2.8"/><path d="M12 18v4"/><path d="m14.9 14.9 2.8 2.8"/><path d="M18 12h4"/><path d="m14.9 9.1 2.8-2.8"/></svg>
+          <p>Our goal is simple: help more books find the readers who will appreciate them.</p>
+        </div>
 
-      </div>
+        <h2>What We Do</h2>
+        <p>
+          BookSwap provides a marketplace where users can list books they want
+          to sell and discover books listed by other users.
+        </p>
+        <p>
+          We aim to create a convenient experience where finding a book is
+          easier and selling books you no longer need is just as simple.
+        </p>
 
-    </main>
+        <div class="feature-grid">
+          <div class="feature">
+            <div class="feature-icon">
+              <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            </div>
+            <h3>Discover Books</h3>
+            <p>Browse book listings and discover titles that match your interests, reading goals, and collection.</p>
+          </div>
 
+          <div class="feature">
+            <div class="feature-icon">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+            </div>
+            <h3>Give Books a New Life</h3>
+            <p>Help books move from one reader to another instead of remaining unused on a bookshelf.</p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M20.6 12.6 12 21.2a2 2 0 0 1-2.8 0l-7.4-7.4a2 2 0 0 1 0-2.8L10.4 2.4A2 2 0 0 1 11.8 2H18a2 2 0 0 1 2 2v6.2a2 2 0 0 1-.6 1.4Z"/><circle cx="14.5" cy="7.5" r="1.5"/></svg>
+            </div>
+            <h3>Sell Your Books</h3>
+            <p>List books you no longer need and connect with people who may be looking for them.</p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.5C.5 7.6 3 4 6.5 4c2 0 3.4 1 4.5 2.4C12 5 13.5 4 15.5 4 19 4 21.5 7.6 20 11.5 17.5 16.4 12 21 12 21Z"/></svg>
+            </div>
+            <h3>Built for Readers</h3>
+            <p>BookSwap is designed around the needs of readers, collectors, students, and anyone who enjoys discovering great books.</p>
+          </div>
+        </div>
+
+        <h2>Why BookSwap?</h2>
+        <p>
+          Books can be expensive, difficult to find, or simply left unused
+          after they have been read. At the same time, someone else may be
+          searching for exactly the book sitting on your shelf.
+        </p>
+        <p>
+          BookSwap helps connect those two sides. By creating a marketplace
+          dedicated to books, we want to make it easier for books to continue
+          their journey from one reader to another.
+        </p>
+
+        <h2>Our Vision</h2>
+        <p>
+          We envision a community where buying and selling books feels natural,
+          convenient, and accessible.
+        </p>
+        <p>
+          We want BookSwap to become a trusted destination for people who
+          want to discover books, share books, and find value in the books
+          they already own.
+        </p>
+
+        <h2>Our Community</h2>
+        <p>
+          BookSwap is powered by its community of readers and sellers.
+          Every listing represents a book that can potentially reach a new
+          reader, and every purchase can give an existing book another chapter.
+        </p>
+        <p>
+          We believe that a strong marketplace starts with a respectful,
+          trustworthy community. That's why we continue working to improve
+          the experience, safety, and reliability of BookSwap for everyone.
+        </p>
+
+        <h2>Built in Pakistan</h2>
+        <p>
+          BookSwap is a Pakistan-based platform created with the goal of making
+          book buying and selling more convenient for readers and book lovers.
+        </p>
+        <p>
+          We are building BookSwap with a focus on simplicity, accessibility,
+          and a marketplace experience that puts books and readers first.
+        </p>
+
+        <div class="closing">
+          <h2>Have a Book to Swap?</h2>
+          <p>Discover your next read or give one of your books a new home with BookSwap.</p>
+          <a class="btn btn-primary" data-page="index" href="#">
+            Explore BookSwap
+            <svg class="icon" style="width:16px;height:16px" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+
+      </main>
+
+      <!-- Side rail -->
+      <aside class="rail">
+        <div class="rail-card">
+          <h3>Why Readers Choose Us</h3>
+          <ul class="rail-list">
+            <li>
+              <span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></svg></span>
+              <div><h4>Free to list</h4><p>Post a book for sale in minutes, at no cost.</p></div>
+            </li>
+            <li>
+              <span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span>
+              <div><h4>Wide selection</h4><p>Titles across genres, from students and collectors alike.</p></div>
+            </li>
+            <li>
+              <span class="icon-wrap"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V8a5 5 0 0 1 10 0v3"/></svg></span>
+              <div><h4>Safe &amp; simple</h4><p>Built with buyer and seller trust in mind.</p></div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="rail-card rail-cta">
+          <p>Ready to find your next read or clear some shelf space?</p>
+          <a class="btn btn-primary" data-page="index" href="#">Get Started</a>
+        </div>
+      </aside>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
-
+      <p>&copy; <span id="year"></span> BookSwap. All rights reserved.</p>
       <p>
-        &copy; <span id="year"></span> BookSwap. All rights reserved.
-      </p>
-
-      <p>
-        <a data-page="privacy">Privacy Policy</a>
+        <a data-page="privacy" href="#">Privacy Policy</a>
         &nbsp;·&nbsp;
-        <a data-page="terms">Terms &amp; Conditions</a>
+        <a data-page="terms" href="#">Terms &amp; Conditions</a>
         &nbsp;·&nbsp;
-        <a data-page="deletion">Account Deletion</a>
+        <a data-page="account_deletion" href="#">Account Deletion</a>
       </p>
-
     </footer>
 
   </div>
 
-
   <script>
     (function(){
-
       var pages = window.BOOKSWAP_PAGES || {};
-
       document.querySelectorAll('a[data-page]').forEach(function(a){
-
         var key = a.getAttribute('data-page');
-
-        if (pages[key]) {
-          a.setAttribute('href', pages[key]);
-        }
-
+        if (pages[key]) { a.setAttribute('href', pages[key]); }
       });
-
-      document.getElementById('year').textContent =
-        new Date().getFullYear();
-
+      var yearEl = document.getElementById('year');
+      if (yearEl) { yearEl.textContent = new Date().getFullYear(); }
     })();
+  </script>
+
+  <script>
+  (function(){
+    function executeScripts(root){
+      root.querySelectorAll('script').forEach(function(old){
+        var s = document.createElement('script');
+        for (var i=0;i<old.attributes.length;i++){ s.setAttribute(old.attributes[i].name, old.attributes[i].value); }
+        s.textContent = old.textContent;
+        old.parentNode.replaceChild(s, old);
+      });
+    }
+    function sameOrigin(href){
+      try { return new URL(href, location.href).origin === location.origin; } catch(e){ return false; }
+    }
+    function resolveHref(a){
+      if (a.hasAttribute('data-page')){
+        var key = a.getAttribute('data-page');
+        var mapped = window.BOOKSWAP_PAGES && window.BOOKSWAP_PAGES[key];
+        if (mapped) return mapped;
+      }
+      return a.getAttribute('href');
+    }
+    function isPageLink(a){
+      if (!a || !a.getAttribute) return false;
+      if (a.target && a.target !== '' && a.target !== '_self') return false;
+      if (a.hasAttribute('download')) return false;
+      var href = resolveHref(a);
+      if (!href || href === '#' || href.indexOf('#') === 0) return false;
+      if (!sameOrigin(href)) return false;
+      if (!/\.html(\?|#|$)/i.test(href)) return false;
+      return true;
+    }
+    function navigate(url, push){
+      document.body.classList.add('page-loading');
+      fetch(url, { credentials: 'same-origin' })
+        .then(function(res){
+          if (!res.ok) throw new Error('Navigation failed');
+          return res.text();
+        })
+        .then(function(html){
+          var doc = new DOMParser().parseFromString(html, 'text/html');
+          document.title = doc.title;
+          document.body.innerHTML = doc.body.innerHTML;
+          executeScripts(document.body);
+          if (push) history.pushState({ pjax: true, url: url }, '', url);
+          window.scrollTo(0, 0);
+          requestAnimationFrame(function(){ document.body.classList.remove('page-loading'); });
+        })
+        .catch(function(){
+          window.location.href = url;
+        });
+    }
+    document.addEventListener('click', function(e){
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest('a');
+      if (!isPageLink(a)) return;
+      e.preventDefault();
+      navigate(resolveHref(a), true);
+    });
+    window.addEventListener('popstate', function(){
+      navigate(location.pathname + location.search, false);
+    });
+  })();
   </script>
 
 </body>
