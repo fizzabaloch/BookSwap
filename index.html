@@ -1231,67 +1231,67 @@
   })();
 </script>
 <script>
-(function(){
-  function executeScripts(root){
-    root.querySelectorAll('script').forEach(function(old){
-      var s = document.createElement('script');
-      for (var i=0;i<old.attributes.length;i++){ s.setAttribute(old.attributes[i].name, old.attributes[i].value); }
-      s.textContent = old.textContent;
-      old.parentNode.replaceChild(s, old);
-    });
-  }
-  function sameOrigin(href){
-    try { return new URL(href, location.href).origin === location.origin; } catch(e){ return false; }
-  }
-  function resolveHref(a){
-    if (a.hasAttribute('data-page')){
-      var key = a.getAttribute('data-page');
-      var mapped = window.BOOKSWAP_PAGES && window.BOOKSWAP_PAGES[key];
-      if (mapped) return mapped;
-    }
-    return a.getAttribute('href');
-  }
-  function isPageLink(a){
-    if (!a || !a.getAttribute) return false;
-    if (a.target && a.target !== '' && a.target !== '_self') return false;
-    if (a.hasAttribute('download')) return false;
-    var href = resolveHref(a);
-    if (!href || href === '#' || href.indexOf('#') === 0) return false;
-    if (!sameOrigin(href)) return false;
-    if (!/\.html(\?|#|$)/i.test(href)) return false;
-    return true;
-  }
-  function navigate(url, push){
-    document.body.classList.add('page-loading');
-    fetch(url, { credentials: 'same-origin' })
-      .then(function(res){
-        if (!res.ok) throw new Error('Navigation failed');
-        return res.text();
-      })
-      .then(function(html){
-        var doc = new DOMParser().parseFromString(html, 'text/html');
-        document.title = doc.title;
-        document.body.innerHTML = doc.body.innerHTML;
-        executeScripts(document.body);
-        if (push) history.pushState({ pjax: true, url: url }, '', url);
-        window.scrollTo(0, 0);
-        requestAnimationFrame(function(){ document.body.classList.remove('page-loading'); });
-      })
-      .catch(function(){
-        window.location.href = url;
-      });
-  }
-  document.addEventListener('click', function(e){
-    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-    var a = e.target.closest('a');
-    if (!isPageLink(a)) return;
-    e.preventDefault();
-    navigate(resolveHref(a), true);
-  });
-  window.addEventListener('popstate', function(){
-    navigate(location.pathname + location.search, false);
-  });
-})();
+// (function(){
+//   function executeScripts(root){
+//     root.querySelectorAll('script').forEach(function(old){
+//       var s = document.createElement('script');
+//       for (var i=0;i<old.attributes.length;i++){ s.setAttribute(old.attributes[i].name, old.attributes[i].value); }
+//       s.textContent = old.textContent;
+//       old.parentNode.replaceChild(s, old);
+//     });
+//   }
+//   function sameOrigin(href){
+//     try { return new URL(href, location.href).origin === location.origin; } catch(e){ return false; }
+//   }
+//   function resolveHref(a){
+//     if (a.hasAttribute('data-page')){
+//       var key = a.getAttribute('data-page');
+//       var mapped = window.BOOKSWAP_PAGES && window.BOOKSWAP_PAGES[key];
+//       if (mapped) return mapped;
+//     }
+//     return a.getAttribute('href');
+//   }
+//   function isPageLink(a){
+//     if (!a || !a.getAttribute) return false;
+//     if (a.target && a.target !== '' && a.target !== '_self') return false;
+//     if (a.hasAttribute('download')) return false;
+//     var href = resolveHref(a);
+//     if (!href || href === '#' || href.indexOf('#') === 0) return false;
+//     if (!sameOrigin(href)) return false;
+//     if (!/\.html(\?|#|$)/i.test(href)) return false;
+//     return true;
+//   }
+//   function navigate(url, push){
+//     document.body.classList.add('page-loading');
+//     fetch(url, { credentials: 'same-origin' })
+//       .then(function(res){
+//         if (!res.ok) throw new Error('Navigation failed');
+//         return res.text();
+//       })
+//       .then(function(html){
+//         var doc = new DOMParser().parseFromString(html, 'text/html');
+//         document.title = doc.title;
+//         document.body.innerHTML = doc.body.innerHTML;
+//         executeScripts(document.body);
+//         if (push) history.pushState({ pjax: true, url: url }, '', url);
+//         window.scrollTo(0, 0);
+//         requestAnimationFrame(function(){ document.body.classList.remove('page-loading'); });
+//       })
+//       .catch(function(){
+//         window.location.href = url;
+//       });
+//   }
+//   document.addEventListener('click', function(e){
+//     if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+//     var a = e.target.closest('a');
+//     if (!isPageLink(a)) return;
+//     e.preventDefault();
+//     navigate(resolveHref(a), true);
+//   });
+//   window.addEventListener('popstate', function(){
+//     navigate(location.pathname + location.search, false);
+//   });
+// })();
 </script>
 </body>
 
