@@ -126,31 +126,42 @@
   .navbar__brand-text strong{ font-family:'Lora',serif; font-size:16.5px; font-weight:700; display:block; line-height:1.1; }
   .navbar__brand-text span{ font-size:11px; color:var(--ink-soft); display:none; }
   .navbar__links{ display:flex; align-items:center; gap:4px; background:var(--cream-mid); border-radius:100px; padding:4px; }
-  .navbar__links a{ font-size:12.5px; font-weight:800; color:var(--ink-soft); padding:9px 16px; border-radius:100px; transition:background .18s ease, color .18s ease; }
-  .navbar__links a:hover, .navbar__links a.is-active{ background:#fff; color:var(--brown-dark); box-shadow:0 4px 10px -4px rgba(139,74,41,.3); }
+  .navbar__links > a,
+  .navbar__dropdown > .navbar__dropdown-toggle{
+    font-size:12.5px; font-weight:800; color:var(--ink-soft); padding:9px 16px;
+    border-radius:100px; transition:background .18s ease, color .18s ease;
+  }
+  .navbar__links > a:hover, .navbar__links > a.is-active,
+  .navbar__dropdown > .navbar__dropdown-toggle:hover,
+  .navbar__dropdown > .navbar__dropdown-toggle.is-active{
+    background:#fff; color:var(--brown-dark); box-shadow:0 4px 10px -4px rgba(139,74,41,.3);
+  }
   .navbar__actions{ display:flex; align-items:center; gap:8px; }
   .navbar__actions .btn{ padding:10px 18px; font-size:12.5px; }
 
-  /* QUICK JUMP (homepage only, non-sticky, scrolls with content) */
-  .quick-jump{
-    position:sticky; top:calc(var(--nav-height) - 6px); z-index:90;
-    padding:8px 0;
+  /* SINGLE NAV BAR + DROPDOWN FOR SECTION LINKS */
+  .navbar__dropdown{ position:relative; }
+  .navbar__dropdown-toggle{
+    border:0; background:transparent; cursor:pointer; font-family:inherit;
+    display:inline-flex; align-items:center; gap:7px;
   }
-  .quick-jump__inner{
-    display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap;
-    background:rgba(255,248,242,.82); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-    border:1px solid var(--line); border-radius:100px; padding:8px 10px;
-    box-shadow:0 12px 28px -12px rgba(107,58,31,.28);
-    width:fit-content; margin:0 auto;
+  .navbar__dropdown-toggle svg{ width:12px; height:12px; transition:transform .18s ease; }
+  .navbar__dropdown.is-open .navbar__dropdown-toggle svg{ transform:rotate(180deg); }
+  .navbar__dropdown-menu{
+    position:absolute; top:calc(100% + 10px); right:0; min-width:190px; padding:8px;
+    display:none; flex-direction:column; gap:3px; background:#fff;
+    border:1px solid var(--line); border-radius:16px;
+    box-shadow:0 18px 38px -16px rgba(107,58,31,.35); z-index:200;
   }
-  .quick-jump a{
-    font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; letter-spacing:.04em;
-    text-transform:uppercase; color:var(--brown-dark); background:var(--brown-tint);
-    border:1px solid var(--peach-deep); padding:7px 14px; border-radius:100px;
-    transition:background .18s ease, transform .18s ease;
+  .navbar__dropdown.is-open .navbar__dropdown-menu{ display:flex; }
+  .navbar__dropdown-menu a{
+    display:block; width:100%; padding:10px 12px; border-radius:10px;
+    font-size:12px; font-weight:800; color:var(--ink-soft); white-space:nowrap;
   }
-  .quick-jump a:hover{ background:var(--peach-deep); transform:translateY(-2px); }
-  @media (max-width:640px){ .quick-jump{ padding:8px 0; } .quick-jump a{ font-size:10px; padding:6px 12px; } }
+  .navbar__dropdown-menu a:hover,
+  .navbar__dropdown-menu a.is-active{
+    background:var(--brown-tint); color:var(--brown-dark);
+  }
   .nav-toggle{ display:none; width:42px; height:42px; border-radius:12px; border:1px solid var(--line); background:#fff; align-items:center; justify-content:center; }
   ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.22s; }
   @media (prefers-reduced-motion: reduce){ ::view-transition-old(root), ::view-transition-new(root){ animation:none; } }
@@ -411,6 +422,12 @@
     .navbar__links{ display:none; }
     .nav-toggle{ display:flex; }
     .navbar__actions .btn-ghost{ display:none; }
+    .navbar__dropdown{ width:100%; }
+    .navbar__dropdown > .navbar__dropdown-toggle{ width:100%; justify-content:space-between; }
+    .navbar__dropdown-menu{
+      position:static; min-width:0; margin-top:4px; width:100%;
+      box-shadow:none; border:0; background:var(--cream-mid);
+    }
     .hero__stats-list{ grid-template-columns:1fr; }
     .steps__journey, .feature-grid, .testimonial-grid, .services-grid{ grid-template-columns:1fr; }
     .call-to-action__inner{ padding:40px 22px; border-radius:24px; }
@@ -454,11 +471,29 @@
           </span>
         </a>
 
-        <div class="navbar__links" aria-label="Section links">
+        <div class="navbar__links" aria-label="Primary links">
           <a href="#hero" class="is-active">Home</a>
           <a data-page="buy" href="#">Buy Books</a>
           <a data-page="sell" href="#">Sell Books</a>
           <a data-page="about_us" href="#">About Us</a>
+
+          <div class="navbar__dropdown" data-section-dropdown>
+            <button class="navbar__dropdown-toggle" type="button"
+                    aria-expanded="false" aria-haspopup="true" data-section-dropdown-toggle>
+              Explore
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+            <div class="navbar__dropdown-menu" data-section-dropdown-menu>
+              <a href="#how-it-works" data-section-link>How It Works</a>
+              <a href="#app-screenshots" data-section-link>App Screenshots</a>
+              <a href="#features" data-section-link>Features</a>
+              <a href="#services" data-section-link>Services</a>
+              <a href="#faq" data-section-link>FAQ</a>
+            </div>
+          </div>
         </div>
 
         <div class="navbar__actions">
@@ -472,16 +507,6 @@
   </header>
 
   <main id="main-content">
-
-  <nav class="quick-jump container" aria-label="Quick section jump">
-    <div class="quick-jump__inner">
-      <a href="#how-it-works">How It Works</a>
-      <a href="#app-screenshots">App Screenshots</a>
-      <a href="#features">Features</a>
-      <a href="#services">Services</a>
-      <a href="#faq">FAQ</a>
-    </div>
-  </nav>
 
     <section id="hero" class="hero" aria-labelledby="hero-title">
       <div class="hero__inner container">
@@ -1074,10 +1099,13 @@
 
   <script>
     (() => {
-      const navLinks = [...document.querySelectorAll('.navbar__links a')];
+      const navLinks = [...document.querySelectorAll('.navbar__links > a[href^="#"]')];
+      const sectionLinks = [...document.querySelectorAll('[data-section-link]')];
       const sections = [...document.querySelectorAll('main > section[id]')];
       const navToggle = document.querySelector('[data-nav-toggle]');
       const navLinksWrap = document.querySelector('.navbar__links');
+      const sectionDropdown = document.querySelector('[data-section-dropdown]');
+      const sectionDropdownToggle = document.querySelector('[data-section-dropdown-toggle]');
 
       // active nav link on scroll (throttled via rAF to avoid layout thrashing)
       let navTicking = false;
@@ -1085,13 +1113,55 @@
         const scrollPos = window.scrollY + 140;
         let current = sections[0];
         sections.forEach((section) => { if (section.offsetTop <= scrollPos) current = section; });
-        navLinks.forEach((link) => link.classList.toggle('is-active', link.getAttribute('href') === `#${current.id}`));
+
+        navLinks.forEach((link) => {
+          link.classList.toggle('is-active', link.getAttribute('href') === `#${current.id}`);
+        });
+
+        sectionLinks.forEach((link) => {
+          link.classList.toggle('is-active', link.getAttribute('href') === `#${current.id}`);
+        });
+
+        const activeDropdownLink = sectionLinks.some(
+          (link) => link.getAttribute('href') === `#${current.id}`
+        );
+        sectionDropdownToggle?.classList.toggle('is-active', activeDropdownLink);
         navTicking = false;
       };
       window.addEventListener('scroll', () => {
         if (!navTicking) { navTicking = true; requestAnimationFrame(updateActiveNav); }
       }, { passive: true });
       updateActiveNav();
+
+      // section dropdown
+      if (sectionDropdown && sectionDropdownToggle) {
+        sectionDropdownToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = sectionDropdown.classList.toggle('is-open');
+          sectionDropdownToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!sectionDropdown.contains(e.target)) {
+            sectionDropdown.classList.remove('is-open');
+            sectionDropdownToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            sectionDropdown.classList.remove('is-open');
+            sectionDropdownToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        sectionLinks.forEach((link) => {
+          link.addEventListener('click', () => {
+            sectionDropdown.classList.remove('is-open');
+            sectionDropdownToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
 
       // mobile nav toggle
       if (navToggle && navLinksWrap) {
@@ -1107,10 +1177,8 @@
       const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
       const getNavOffset = () => {
         const header = document.getElementById('site-header');
-        const quickJump = document.querySelector('.quick-jump');
         const headerH = header ? header.offsetHeight : 84;
-        const quickJumpH = quickJump ? quickJump.offsetHeight : 0;
-        return headerH + quickJumpH + 20;
+        return headerH + 20;
       };
       const smoothScrollTo = (targetY, duration) => {
         const startY = window.scrollY;
