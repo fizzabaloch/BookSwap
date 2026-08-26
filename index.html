@@ -1098,6 +1098,32 @@
   </footer>
 
   <script>
+  // Reset transient UI state (dropdown, mobile menu) whenever the page
+  // is restored from bfcache (e.g. browser Back/Forward button)
+  window.addEventListener('pageshow', function (event) {
+    if (event.persisted) {
+      var sectionDropdown = document.querySelector('[data-section-dropdown]');
+      var sectionDropdownToggle = document.querySelector('[data-section-dropdown-toggle]');
+      if (sectionDropdown && sectionDropdownToggle) {
+        sectionDropdown.classList.remove('is-open');
+        sectionDropdownToggle.setAttribute('aria-expanded', 'false');
+      }
+
+      // Also reset the mobile nav menu if it was left open
+      var navLinksWrap = document.querySelector('.navbar__links');
+      if (navLinksWrap) {
+        navLinksWrap.style.display = '';
+        navLinksWrap.style.cssText = navLinksWrap.style.cssText.replace(
+          /position:absolute;top:76px;left:20px;right:20px;flex-direction:column;background:#fff;border-radius:20px;padding:10px;box-shadow:0 20px 40px -16px rgba\(107,58,31,\.3\);/,
+          ''
+        );
+      }
+    }
+  });
+</script>
+  
+
+  <script>
     (() => {
       const navLinks = [...document.querySelectorAll('.navbar__links > a[href^="#"]')];
       const sectionLinks = [...document.querySelectorAll('[data-section-link]')];
