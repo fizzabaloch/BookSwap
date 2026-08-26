@@ -142,23 +142,18 @@
   /* SINGLE NAV BAR + DROPDOWN FOR SECTION LINKS */
   .navbar__dropdown{ position:relative; }
   .navbar__dropdown-toggle{
-    appearance:none; -webkit-appearance:none;
-    border:0; outline:0; background:transparent; cursor:pointer; font-family:inherit;
-    display:inline-flex; align-items:center; justify-content:center; gap:7px;
-    margin:0; line-height:1.2;
+    border:0; background:transparent; cursor:pointer; font-family:inherit;
+    display:inline-flex; align-items:center; gap:7px;
   }
   .navbar__dropdown-toggle svg{ width:12px; height:12px; transition:transform .18s ease; }
   .navbar__dropdown.is-open .navbar__dropdown-toggle svg{ transform:rotate(180deg); }
   .navbar__dropdown-menu{
-    position:absolute !important; top:calc(100% + 10px) !important; right:0 !important;
-    min-width:190px !important; width:max-content; padding:8px !important;
-    display:none !important; flex-direction:column !important; gap:3px !important;
-    align-items:stretch !important; flex-wrap:nowrap !important;
-    background:#fff !important; border:1px solid var(--line) !important;
-    border-radius:16px !important; box-shadow:0 18px 38px -16px rgba(107,58,31,.35) !important;
-    z-index:200 !important;
+    position:absolute; top:calc(100% + 10px); right:0; min-width:190px; padding:8px;
+    display:none; flex-direction:column; gap:3px; background:#fff;
+    border:1px solid var(--line); border-radius:16px;
+    box-shadow:0 18px 38px -16px rgba(107,58,31,.35); z-index:200;
   }
-  .navbar__dropdown-toggle[aria-expanded="true"] + .navbar__dropdown-menu{ display:flex !important; }
+  .navbar__dropdown.is-open .navbar__dropdown-menu{ display:flex; }
   .navbar__dropdown-menu a{
     display:block; width:100%; padding:10px 12px; border-radius:10px;
     font-size:12px; font-weight:800; color:var(--ink-soft); white-space:nowrap;
@@ -430,9 +425,8 @@
     .navbar__dropdown{ width:100%; }
     .navbar__dropdown > .navbar__dropdown-toggle{ width:100%; justify-content:space-between; }
     .navbar__dropdown-menu{
-      position:static !important; top:auto !important; right:auto !important;
-      min-width:0 !important; width:100%; margin-top:4px;
-      box-shadow:none !important; border:0 !important; background:var(--cream-mid) !important;
+      position:static; min-width:0; margin-top:4px; width:100%;
+      box-shadow:none; border:0; background:var(--cream-mid);
     }
     .hero__stats-list{ grid-template-columns:1fr; }
     .steps__journey, .feature-grid, .testimonial-grid, .services-grid{ grid-template-columns:1fr; }
@@ -1139,42 +1133,33 @@
       }, { passive: true });
       updateActiveNav();
 
-      // section dropdown — controlled only by aria-expanded
-      const closeSectionDropdown = () => {
-        if (!sectionDropdown || !sectionDropdownToggle) return;
-        sectionDropdown.classList.remove('is-open');
-        sectionDropdownToggle.setAttribute('aria-expanded', 'false');
-      };
-
+      // section dropdown
       if (sectionDropdown && sectionDropdownToggle) {
         sectionDropdownToggle.addEventListener('click', (e) => {
-          e.preventDefault();
           e.stopPropagation();
-          const isOpen = sectionDropdownToggle.getAttribute('aria-expanded') === 'true';
-          if (isOpen) {
-            closeSectionDropdown();
-          } else {
-            sectionDropdown.classList.add('is-open');
-            sectionDropdownToggle.setAttribute('aria-expanded', 'true');
-          }
+          const isOpen = sectionDropdown.classList.toggle('is-open');
+          sectionDropdownToggle.setAttribute('aria-expanded', String(isOpen));
         });
 
         document.addEventListener('click', (e) => {
-          if (!sectionDropdown.contains(e.target)) closeSectionDropdown();
+          if (!sectionDropdown.contains(e.target)) {
+            sectionDropdown.classList.remove('is-open');
+            sectionDropdownToggle.setAttribute('aria-expanded', 'false');
+          }
         });
 
         document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') closeSectionDropdown();
+          if (e.key === 'Escape') {
+            sectionDropdown.classList.remove('is-open');
+            sectionDropdownToggle.setAttribute('aria-expanded', 'false');
+          }
         });
 
         sectionLinks.forEach((link) => {
-          link.addEventListener('click', closeSectionDropdown);
-        });
-
-        // Clicking any primary/page navigation item always closes Explore.
-        navLinks.forEach((link) => link.addEventListener('click', closeSectionDropdown));
-        document.querySelectorAll('a[data-page]').forEach((link) => {
-          link.addEventListener('click', closeSectionDropdown);
+          link.addEventListener('click', () => {
+            sectionDropdown.classList.remove('is-open');
+            sectionDropdownToggle.setAttribute('aria-expanded', 'false');
+          });
         });
       }
 
@@ -1186,21 +1171,6 @@
           navLinksWrap.style.cssText += isOpen ? '' : 'position:absolute;top:76px;left:20px;right:20px;flex-direction:column;background:#fff;border-radius:20px;padding:10px;box-shadow:0 20px 40px -16px rgba(107,58,31,.3);';
         });
       }
-
-      // Reset transient navigation UI whenever the browser restores this page
-      // from its back/forward cache. This prevents an open dropdown from coming
-      // back in a broken-looking state after visiting Buy Books / Sell Books.
-      const resetNavigationUI = () => {
-        closeSectionDropdown();
-        if (navLinksWrap && window.innerWidth > 640) {
-          navLinksWrap.style.cssText = '';
-        }
-      };
-      window.addEventListener('pageshow', resetNavigationUI);
-      window.addEventListener('pagehide', resetNavigationUI);
-      window.addEventListener('hashchange', resetNavigationUI);
-      window.addEventListener('beforeunload', resetNavigationUI);
-      resetNavigationUI();
 
       // manual smooth scroll for in-page anchors — fully JS-controlled so it
       // can't get interrupted or "fight" with the sticky header / scroll listeners
