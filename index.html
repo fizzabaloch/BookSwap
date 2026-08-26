@@ -540,25 +540,15 @@
           <div class="phone">
             <div class="screen">
               <div class="notch"></div>
-              <!-- <div class="status"><span>3:51</span><span>25%</span></div>
-              <div class="topbar"><h4>Book Marketplace</h4></div> -->
               <div class="screen-content">
                 <div class="screen-shot foldcard" style="margin-top:8px;overflow:hidden;">
                   <video src="video.mp4" autoplay muted loop playsinline preload="metadata" aria-label="BookSwap app demo showing live listings and pricing" style="width:100%;height:100%;display:block;object-fit:fill;border-radius:inherit;"></video>
                 </div>
-                <!-- <p style="font-size:11px;color:var(--ink-soft);margin-top:10px;">Browse live listings, compare prices, and start a local exchange in seconds.</p> -->
               </div>
-              <!-- <div class="tabbar">
-                <div class="tab active"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9a1 1 0 0 0 1 1h4v-5h2v5h4a1 1 0 0 0 1-1v-9"/></svg>Home</div>
-                <div class="tab"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>Sell</div>
-                <div class="tab"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.5 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5 8.4 8.4 0 0 1 8.5 8.5"/></svg>Chats</div>
-                <div class="tab"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-3.3 3.6-6 8-6s8 2.7 8 6"/></svg>Profile</div>
-              </div> -->
             </div>
           </div>
         </div>
       </div>
-      <!-- sc:\Users\HP\OneDrive\Desktop\bookswap website\assets -->
     </section>
 
     <section id="how-it-works" class="card-field" aria-labelledby="how-it-works-title">
@@ -921,31 +911,6 @@
       </div>
     </section>
 
-    <script>
-  // Reset transient UI state (dropdown, mobile menu) whenever the page
-  // is restored from bfcache (e.g. browser Back/Forward button)
-  window.addEventListener('pageshow', function (event) {
-    if (event.persisted) {
-      var sectionDropdown = document.querySelector('[data-section-dropdown]');
-      var sectionDropdownToggle = document.querySelector('[data-section-dropdown-toggle]');
-      if (sectionDropdown && sectionDropdownToggle) {
-        sectionDropdown.classList.remove('is-open');
-        sectionDropdownToggle.setAttribute('aria-expanded', 'false');
-      }
-
-      // Also reset the mobile nav menu if it was left open
-      var navLinksWrap = document.querySelector('.navbar__links');
-      if (navLinksWrap) {
-        navLinksWrap.style.display = '';
-        navLinksWrap.style.cssText = navLinksWrap.style.cssText.replace(
-          /position:absolute;top:76px;left:20px;right:20px;flex-direction:column;background:#fff;border-radius:20px;padding:10px;box-shadow:0 20px 40px -16px rgba\(107,58,31,\.3\);/,
-          ''
-        );
-      }
-    }
-  });
-</script>
-
     <section id="testimonials" class="card-field" aria-labelledby="testimonials-title">
       <span class="speck" style="width:6px;height:6px;top:24%;left:20%;" aria-hidden="true"></span>
       <span class="speck" style="width:8px;height:8px;top:66%;left:86%;animation-delay:-4.2s;" aria-hidden="true"></span>
@@ -1054,7 +1019,6 @@
               <h3>Contact channels</h3>
               <ul class="comparison-list">
                 <li><a href="mailto:support@bookswapmarketplace.com">support@bookswapmarketplace.com</a></li>
-                
                 <li>Thandi Sarak, Old Campus Colony, Hyderabad, 76080</li>
                 <li>Local-first app for students and readers.</li>
               </ul>
@@ -1123,10 +1087,10 @@
   </footer>
 
   <script>
-  // Reset transient UI state (dropdown, mobile menu) whenever the page
-  // is restored from bfcache (e.g. browser Back/Forward button)
-  window.addEventListener('pageshow', function (event) {
-    if (event.persisted) {
+    // Always force the dropdown/mobile menu closed on load — regardless of
+    // whether this is a fresh navigation, a bfcache restore, or something else
+    // carrying stale UI state across pages.
+    function resetNavState() {
       var sectionDropdown = document.querySelector('[data-section-dropdown]');
       var sectionDropdownToggle = document.querySelector('[data-section-dropdown-toggle]');
       if (sectionDropdown && sectionDropdownToggle) {
@@ -1134,19 +1098,17 @@
         sectionDropdownToggle.setAttribute('aria-expanded', 'false');
       }
 
-      // Also reset the mobile nav menu if it was left open
       var navLinksWrap = document.querySelector('.navbar__links');
       if (navLinksWrap) {
-        navLinksWrap.style.display = '';
-        navLinksWrap.style.cssText = navLinksWrap.style.cssText.replace(
-          /position:absolute;top:76px;left:20px;right:20px;flex-direction:column;background:#fff;border-radius:20px;padding:10px;box-shadow:0 20px 40px -16px rgba\(107,58,31,\.3\);/,
-          ''
-        );
+        navLinksWrap.removeAttribute('style');
       }
     }
-  });
-</script>
-  
+
+    // Run on every normal load...
+    document.addEventListener('DOMContentLoaded', resetNavState);
+    // ...and on every pageshow (covers bfcache restores in all browsers)
+    window.addEventListener('pageshow', resetNavState);
+  </script>
 
   <script>
     (() => {
@@ -1348,69 +1310,6 @@
       if (pages[key]) { a.setAttribute('href', pages[key]); }
     });
   })();
-</script>
-<script>
-// (function(){
-//   function executeScripts(root){
-//     root.querySelectorAll('script').forEach(function(old){
-//       var s = document.createElement('script');
-//       for (var i=0;i<old.attributes.length;i++){ s.setAttribute(old.attributes[i].name, old.attributes[i].value); }
-//       s.textContent = old.textContent;
-//       old.parentNode.replaceChild(s, old);
-//     });
-//   }
-//   function sameOrigin(href){
-//     try { return new URL(href, location.href).origin === location.origin; } catch(e){ return false; }
-//   }
-//   function resolveHref(a){
-//     if (a.hasAttribute('data-page')){
-//       var key = a.getAttribute('data-page');
-//       var mapped = window.BOOKSWAP_PAGES && window.BOOKSWAP_PAGES[key];
-//       if (mapped) return mapped;
-//     }
-//     return a.getAttribute('href');
-//   }
-//   function isPageLink(a){
-//     if (!a || !a.getAttribute) return false;
-//     if (a.target && a.target !== '' && a.target !== '_self') return false;
-//     if (a.hasAttribute('download')) return false;
-//     var href = resolveHref(a);
-//     if (!href || href === '#' || href.indexOf('#') === 0) return false;
-//     if (!sameOrigin(href)) return false;
-//     if (!/\.html(\?|#|$)/i.test(href)) return false;
-//     return true;
-//   }
-//   function navigate(url, push){
-//     document.body.classList.add('page-loading');
-//     fetch(url, { credentials: 'same-origin' })
-//       .then(function(res){
-//         if (!res.ok) throw new Error('Navigation failed');
-//         return res.text();
-//       })
-//       .then(function(html){
-//         var doc = new DOMParser().parseFromString(html, 'text/html');
-//         document.title = doc.title;
-//         document.body.innerHTML = doc.body.innerHTML;
-//         executeScripts(document.body);
-//         if (push) history.pushState({ pjax: true, url: url }, '', url);
-//         window.scrollTo(0, 0);
-//         requestAnimationFrame(function(){ document.body.classList.remove('page-loading'); });
-//       })
-//       .catch(function(){
-//         window.location.href = url;
-//       });
-//   }
-//   document.addEventListener('click', function(e){
-//     if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-//     var a = e.target.closest('a');
-//     if (!isPageLink(a)) return;
-//     e.preventDefault();
-//     navigate(resolveHref(a), true);
-//   });
-//   window.addEventListener('popstate', function(){
-//     navigate(location.pathname + location.search, false);
-//   });
-// })();
 </script>
 </body>
 
